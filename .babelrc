@@ -4,7 +4,18 @@
   ],
   "plugins": [
     "transform-runtime",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    [
+      "babel-plugin-module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "@": "./src"
+        }
+      }
+    ]
   ],
   "parserOpts": {
     "plugins": [

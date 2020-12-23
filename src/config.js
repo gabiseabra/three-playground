@@ -10,6 +10,4 @@ export const CAM_DELTA = CAM_FAR - CAM_NEAR;
 export const Z0 = 5;
 
 // object's apearance
-export const MATERIAL = new THREE.MeshLambertMaterial({
-  flatShading: true
-});
+export const MATERIAL = new THREE.MeshNormalMaterial();

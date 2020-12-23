@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { MATERIAL, Z0 } from "./config";
+import { MATERIAL, Z0 } from "@/config";
 
 export class Sphere extends THREE.Object3D {
   size = 1;
