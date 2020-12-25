@@ -4,8 +4,8 @@ import {
   EffectComposer,
   EffectPass,
   RenderPass,
-  DepthOfFieldEffect,
-  BlendFunction
+  BlendFunction,
+  RealisticBokehEffect
 } from "postprocessing";
 import { CAM_NEAR, CAM_FAR, Z0 } from "@/config";
 import { HeatPass } from "@/postprocessing/Heat";
@@ -17,17 +17,24 @@ const mkComposer = ({ scene, camera, renderer }) => {
     frameBufferType: THREE.HalfFloatType
   });
 
-  const dof = new DepthOfFieldEffect(camera, {
-    focusDistance: 0.1,
-    focalLength: 0.1,
-    bokehScale: 5.0,
-    blendFunction: BlendFunction.NORMAL
+  const bokeh = new RealisticBokehEffect({
+    blendFunction: BlendFunction.NORMAL,
+    focus: Z0,
+    luminanceGain: 0.0,
+    bias: 10.0,
+    fringe: 10.0,
+    maxBlur: 10.0,
+    rings: 3,
+    samples: 6,
+    manualDoF: true
+    // showFocus: true,
   });
-  dof.target = new THREE.Vector3(0, 0, Z0);
+
+  bokeh.uniforms.get("dof").value = new THREE.Vector4(0.225, 1.0, 0.225, 2.0);
 
   for (const pass of [
     new RenderPass(scene, camera),
-    new EffectPass(camera, dof),
+    new EffectPass(camera, bokeh),
     new HeatPass(camera)
   ])
     composer.addPass(pass);
