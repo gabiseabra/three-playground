@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { DEG, MATERIAL } from "@/config";
+import { DEG, MATERIAL } from "/config";
 
 export class Bean extends THREE.Object3D {
   size = 1;

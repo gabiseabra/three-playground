@@ -1,5 +1,5 @@
 import { Effect, EffectPass, BlendFunction } from "postprocessing";
-import FRAGMENT from "./Heat.glsl";
+import FRAGMENT from "./Heat.frag";
 
 export class HeatEffect extends Effect {
   constructor() {

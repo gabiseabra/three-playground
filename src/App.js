@@ -7,9 +7,9 @@ import {
   BlendFunction,
   RealisticBokehEffect
 } from "postprocessing";
-import { CAM_NEAR, CAM_FAR, Z0 } from "@/config";
-import { HeatPass } from "@/postprocessing/Heat";
-import { Scene } from "@/objects/Scene";
+import { CAM_NEAR, CAM_FAR, Z0 } from "/config";
+import { HeatPass } from "/postprocessing/Heat";
+import { Scene } from "/objects/Scene";
 import { CAM_FOV } from "./config";
 
 const mkComposer = ({ scene, camera, renderer }) => {

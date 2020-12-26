@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { CAM_NEAR, DEG } from "@/config";
+import { CAM_NEAR, DEG } from "/config";
 import { Bean } from "./Bean";
 import { Light } from "./Light";
 import { Sphere } from "./Sphere";
