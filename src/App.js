@@ -5,12 +5,13 @@ import {
   EffectPass,
   RenderPass,
   BlendFunction,
-  RealisticBokehEffect
+  RealisticBokehEffect,
+  SelectiveBloomEffect
 } from "postprocessing";
-import { CAM_NEAR, CAM_FAR, Z0 } from "/config";
+import { CAM_NEAR, CAM_FAR, Z0, Z1 } from "/config";
 import { HeatPass } from "/postprocessing/Heat";
-import { Scene } from "/objects/Scene";
-import { CAM_FOV } from "./config";
+import { Scene } from "./Scene";
+import { CAM_FOV, DEG } from "./config";
 
 const mkComposer = ({ scene, camera, renderer }) => {
   const composer = new EffectComposer(renderer, {
@@ -29,8 +30,12 @@ const mkComposer = ({ scene, camera, renderer }) => {
     manualDoF: true
     // showFocus: true,
   });
-
-  bokeh.uniforms.get("dof").value = new THREE.Vector4(0.225, 1.0, 0.225, 2.0);
+  bokeh.uniforms.get("dof").value = new THREE.Vector4(
+    0.225,
+    1.0,
+    0.225,
+    2.0
+  )
 
   for (const pass of [
     new RenderPass(scene, camera),
@@ -74,7 +79,9 @@ export class App {
     this.composer = mkComposer(this);
     this.clock = new THREE.Clock(true);
 
-    this.camera.position.z = CAM_NEAR;
+    this.camera.position.z = Z1 + CAM_NEAR;
+    // this.camera.position.y = -50
+    // this.camera.rotateX(-5 * DEG)
 
     this.updateSize();
   }

@@ -1,7 +1,6 @@
 import * as THREE from "three";
-import { CAM_NEAR, DEG } from "/config";
+import { DEG } from "/config";
 import { Bean } from "./Bean";
-import { Light } from "./Light";
 import { Sphere } from "./Sphere";
 
 // Hand picked spherical coordinates of some beans
@@ -17,15 +16,11 @@ const BEANS = [
   [5.2, 315 * DEG, 40 * DEG]
 ];
 
-export class Scene extends THREE.Scene {
-  background = new THREE.Color(0xffeadb);
-  // fog = new THREE.Fog(0xf5d2c9, CAM_NEAR, CAM_NEAR + CAM_DELTA * 0.8)
-
+export class Horizon extends THREE.Object3D {
   constructor() {
     super();
 
-    this.objects = [
-      new Light(),
+    const objects = [
       new Sphere(),
       ...BEANS.map(([d, z, i]) =>
         new Bean().translateOnAxis(
@@ -35,6 +30,6 @@ export class Scene extends THREE.Scene {
       )
     ];
 
-    this.objects.forEach((x) => this.add(x));
+    objects.forEach((x) => this.add(x));
   }
 }
