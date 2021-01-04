@@ -14,7 +14,6 @@ export class Scene extends THREE.Scene {
     this.grid = new InfiniteGrid()
     this.grid.position.y = -10
     this.grid.position.z = -50
-    // this.grid.rotateX(90 * DEG)
 
     for (const obj of [
       this.light,

@@ -22,12 +22,12 @@ export class Horizon extends THREE.Object3D {
 
     const objects = [
       new Sphere(),
-      ...BEANS.map(([d, z, i]) =>
-        new Bean().translateOnAxis(
-          new THREE.Vector3().setFromSphericalCoords(d, z, i),
-          d
-        )
-      )
+      // ...BEANS.map(([d, z, i]) =>
+      //   new Bean().translateOnAxis(
+      //     new THREE.Vector3().setFromSphericalCoords(d, z, i),
+      //     d
+      //   )
+      // )
     ];
 
     objects.forEach((x) => this.add(x));

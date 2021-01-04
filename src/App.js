@@ -79,7 +79,7 @@ export class App {
     this.composer = mkComposer(this);
     this.clock = new THREE.Clock(true);
 
-    this.camera.position.z = Z1 + CAM_NEAR;
+    this.camera.position.z = Z0 + CAM_NEAR;
     // this.camera.position.y = -50
     // this.camera.rotateX(-5 * DEG)
 
