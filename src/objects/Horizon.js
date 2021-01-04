@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { DEG } from "/config";
 import { Bean } from "./Bean";
 import { Sphere } from "./Sphere";
+import { RetroText } from "./RetroText";
 
 // Hand picked spherical coordinates of some beans
 const BEANS = [
@@ -20,8 +21,14 @@ export class Horizon extends THREE.Object3D {
   constructor() {
     super();
 
+    const title = new RetroText('GABI SEABRA', {
+      height: 1
+    })
+    title.position.set(-6.5, -1, 17)
     const objects = [
       new Sphere(),
+      title,
+      // lmao
       // ...BEANS.map(([d, z, i]) =>
       //   new Bean().translateOnAxis(
       //     new THREE.Vector3().setFromSphericalCoords(d, z, i),

@@ -12,7 +12,7 @@ export class Scene extends THREE.Scene {
     this.light = new Light()
     this.horizon = new Horizon()
     this.grid = new InfiniteGrid()
-    this.grid.position.y = -10
+    this.grid.position.y = -100
     this.grid.position.z = -50
 
     for (const obj of [

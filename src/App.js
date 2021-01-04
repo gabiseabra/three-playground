@@ -39,8 +39,8 @@ const mkComposer = ({ scene, camera, renderer }) => {
 
   for (const pass of [
     new RenderPass(scene, camera),
-    new EffectPass(camera, bokeh),
-    new HeatPass(camera)
+    ///new EffectPass(camera, bokeh),
+    //new HeatPass(camera)
   ])
     composer.addPass(pass);
 
@@ -73,7 +73,7 @@ export class App {
     );
     this.renderer = new THREE.WebGLRenderer({
       powerPreference: "high-performance",
-      antialias: false
+      antialias: true
     });
     this.controls = new OrbitControls(this.camera, this.element);
     this.composer = mkComposer(this);
