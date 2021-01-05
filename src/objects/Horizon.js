@@ -21,10 +21,11 @@ export class Horizon extends THREE.Object3D {
   constructor() {
     super();
 
-    const title = new RetroText('GABI SEABRA', {
-      height: 1
+    const title = new RetroText('LMAO', {
+      height: 1,
+      color: 0xd18741
     })
-    title.position.set(-6.5, -1, 17)
+    title.position.set(-2.5, -1, 13)
     const objects = [
       new Sphere(),
       title,

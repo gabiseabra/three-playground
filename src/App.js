@@ -75,11 +75,14 @@ export class App {
       powerPreference: "high-performance",
       antialias: true
     });
+
     this.controls = new OrbitControls(this.camera, this.element);
     this.composer = mkComposer(this);
     this.clock = new THREE.Clock(true);
 
-    this.camera.position.z = Z0 + CAM_NEAR;
+    this.camera.position.z = 2000
+    this.camera.position.y = 200
+    // this.camera.position.z = Z0 + CAM_NEAR;
     // this.camera.position.y = -50
     // this.camera.rotateX(-5 * DEG)
 

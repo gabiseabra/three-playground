@@ -43,7 +43,7 @@ export class InfiniteGrid extends THREE.Mesh {
 
   constructor() {
     const color = new THREE.Color(0xffa18c);
-    const distance = 8000;
+    const distance = 2000;
     const size = 10;
 
     const geometry = new THREE.PlaneBufferGeometry(2, 2, 1, 1);

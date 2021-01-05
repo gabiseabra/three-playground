@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { Light } from "/objects/Light";
 import { InfiniteGrid } from "/objects/InfiniteGrid";
 import { Horizon } from "/objects/Horizon";
+import { Sky } from "/objects/Sky";
 import { DEG } from "./config";
 
 export class Scene extends THREE.Scene {
@@ -9,13 +10,17 @@ export class Scene extends THREE.Scene {
 
   constructor() {
     super();
+    this.sky = new Sky()
     this.light = new Light()
     this.horizon = new Horizon()
     this.grid = new InfiniteGrid()
-    this.grid.position.y = -100
-    this.grid.position.z = -50
+
+    this.horizon.position.y = 100
+    this.horizon.position.z = -1000
+    this.horizon.scale.setScalar(10)
 
     for (const obj of [
+      this.sky,
       this.light,
       this.horizon,
       this.grid

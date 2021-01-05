@@ -12,7 +12,7 @@ const mkFrontMaterial = (color) =>
     dithering: true,
     color: color,
     emissive: color,
-    emissiveIntensity: 0.5
+    emissiveIntensity: 0.5,
   })
 
 const mkBackMaterial = (color) =>
