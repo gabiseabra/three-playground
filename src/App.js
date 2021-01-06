@@ -101,13 +101,30 @@ export class App {
       this.height * composerScale
     );
     this.renderer.setSize(this.width, this.height);
+    this.renderer.uniforms = {
+      time: new THREE.Uniform(0)
+    }
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
   }
 
   render() {
+    const d = this.clock.getDelta()
     this.updateSize();
-    this.composer.render(this.clock.getDelta());
-    // this.renderer.render(this.scene, this.camera);
+    this.scene.traverse((child) => {
+      if (child.isMesh) updateMesh(child, d)
+    });
+    this.composer.render(d);
+  }
+}
+
+
+function updateMesh(mesh, delta) {
+  updateMaterial(mesh.material, delta)
+}
+
+function updateMaterial(material, delta) {
+  if (material.uTime) {
+    material.uTime.value += delta
   }
 }

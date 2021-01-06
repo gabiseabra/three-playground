@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { Light } from "/objects/Light";
-import { InfiniteGrid } from "/objects/InfiniteGrid";
-import { Horizon } from "/objects/Horizon";
 import { Sky } from "/objects/Sky";
+import { Horizon } from "/objects/Horizon";
+import { Terrain } from "/objects/Terrain";
 import { DEG } from "./config";
 
 export class Scene extends THREE.Scene {
@@ -12,9 +12,12 @@ export class Scene extends THREE.Scene {
     super();
     this.sky = new Sky()
     this.light = new Light()
-    this.horizon = new Horizon()
-    this.grid = new InfiniteGrid()
 
+    this.terrain = new Terrain()
+    // this.grid.scale.setScalar(6)
+    this.terrain.rotateX(-90 * DEG)
+    
+    this.horizon = new Horizon()
     this.horizon.position.y = 100
     this.horizon.position.z = -1000
     this.horizon.scale.setScalar(10)
@@ -23,7 +26,7 @@ export class Scene extends THREE.Scene {
       this.sky,
       this.light,
       this.horizon,
-      this.grid
+      this.terrain
     ]) {
       this.add(obj);
     }

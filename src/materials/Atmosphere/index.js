@@ -11,6 +11,7 @@ export class AtmosphereMaterial extends THREE.ShaderMaterial {
       fragmentShader,
       blending: THREE.NoBlending,
       depthWrite: true,
+      depthTest: true,
       uniforms: {
         turbidity: { value: 1 },
         rayleigh: { value: 2 },
