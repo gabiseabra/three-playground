@@ -6,14 +6,16 @@ import {includeTerrainShader} from '/materials/Terrain'
 export class Terrain extends THREE.Object3D {
   constructor({
     size = 2000,
-    segments = 25
+    segments = 25,
+    color = 0xde9c50,
+    gridColor = 0x6260eb
   } = {}) {
     super();
 
     const geometry = new THREE.PlaneBufferGeometry(size, size, segments, segments);
 
     const material = new THREE.MeshPhysicalMaterial({
-      color: 0x6260eb,
+      color,
       flatShading: true
     });
     material.onBeforeCompile = compose(
@@ -26,7 +28,8 @@ export class Terrain extends THREE.Object3D {
       }),
       includeGridShader({
         speed: 0.1,
-        size: 11.5
+        size: 11.5,
+        color: gridColor
       })
     )
     this.add(new THREE.Mesh(geometry, material));
