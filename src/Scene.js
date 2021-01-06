@@ -14,7 +14,6 @@ export class Scene extends THREE.Scene {
     this.light = new Light()
 
     this.terrain = new Terrain()
-    // this.grid.scale.setScalar(6)
     this.terrain.rotateX(-90 * DEG)
     
     this.horizon = new Horizon()

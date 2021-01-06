@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import {compose} from '/lib/composeShaders'
+import {includeGridShader} from '/materials/Grid'
 import {includeTerrainShader} from '/materials/Terrain'
 
 export class Terrain extends THREE.Object3D {
@@ -10,17 +12,23 @@ export class Terrain extends THREE.Object3D {
 
     const geometry = new THREE.PlaneBufferGeometry(size, size, segments, segments);
 
-    const material = new THREE.MeshNormalMaterial({
-      // color: 0x6260eb,
+    const material = new THREE.MeshPhysicalMaterial({
+      color: 0x6260eb,
       flatShading: true
     });
-    material.onBeforeCompile = includeTerrainShader({
-      speed: 0.1,
-      displacement: 15,
-      pathSize: 0.04,
-      dithering: true,
-      step: segments / size
-    })
+    material.onBeforeCompile = compose(
+      includeTerrainShader({
+        speed: 0.1,
+        displacement: 12,
+        pathSize: 0.05,
+        dithering: true,
+        step: segments / size
+      }),
+      includeGridShader({
+        speed: 0.1,
+        size: 11.5
+      })
+    )
     this.add(new THREE.Mesh(geometry, material));
   }
 }

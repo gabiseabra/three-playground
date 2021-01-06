@@ -31,8 +31,8 @@ export const includeTerrainShader = ({
     uStep: new THREE.Uniform(step)
   })
 
+  console.log(shader.fragmentShader)
   shader.defines = { USE_UV: true };
-  shader.extensionDerivatives = true
   shader.vertexShader = `${VERTEX_HELPERS}\n` + shader.vertexShader;
   shader.vertexShader = shader.vertexShader.replace('#include <begin_vertex>', BEGIN_VERTEX);
   shader.fragmentShader = `${FRAGMENT_HELPERS}\n` + shader.fragmentShader;
