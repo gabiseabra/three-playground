@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import vertexShader from './Fog.vert'
-import fragmentShader from './Fog.frag'
+import vertexShader from './Atmosphere.vert'
+import fragmentShader from './Atmosphere.frag'
 
-export class FogMaterial extends THREE.ShaderMaterial {
+export class AtmosphereMaterial extends THREE.ShaderMaterial {
   constructor({
     groundColor = new THREE.Color(0xfafafa)
   } = {}) {

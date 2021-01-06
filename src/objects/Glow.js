@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import {AtmosphereMaterial} from './Atmosphere'
+import { GlowMaterial } from '/materials/Glow'
 
 const scale = (geometry, x) => geometry.clone().scale(x, x, x)
 
@@ -9,7 +9,7 @@ export class InnerGlow extends THREE.Mesh {
     power = 2.0,
     coefficient = 1.1
   }) {
-    const material = new AtmosphereMaterial({
+    const material = new GlowMaterial({
       color,
       power,
       coefficient
@@ -26,7 +26,7 @@ export class OuterGlow extends THREE.Mesh {
     coefficient = 0.2,
     radius = 0.3
   }) {
-    const material = new AtmosphereMaterial({
+    const material = new GlowMaterial({
       color,
       power,
       coefficient,
