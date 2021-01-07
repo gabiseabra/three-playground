@@ -5,8 +5,8 @@ import FRAGMENT_HELPERS from './Terrain.frag'
 const BEGIN_VERTEX = `
 #include <begin_vertex>
 
-// transformedNormal = normalMatrix * calcNormal(uv);
-transformed = calcPosition(transformed, uv);
+transformedNormal = normalMatrix * calcNormal();
+transformed = calcPosition();
 `
 
 const CLIPPING_PLANES_FRAGMENT = `
@@ -31,7 +31,6 @@ export const includeTerrainShader = ({
     uStep: new THREE.Uniform(step)
   })
 
-  console.log(shader.fragmentShader)
   shader.defines = { USE_UV: true };
   shader.vertexShader = `${VERTEX_HELPERS}\n` + shader.vertexShader;
   shader.vertexShader = shader.vertexShader.replace('#include <begin_vertex>', BEGIN_VERTEX);

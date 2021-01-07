@@ -5,9 +5,9 @@ import {includeTerrainShader} from '/materials/Terrain'
 
 export class Terrain extends THREE.Object3D {
   constructor({
-    size = 2000,
+    size,
     segments = 25,
-    color = 0xde9c50,
+    color = 0x9c7448,
     gridColor = 0x6260eb
   } = {}) {
     super();
@@ -16,13 +16,15 @@ export class Terrain extends THREE.Object3D {
 
     const material = new THREE.MeshPhysicalMaterial({
       color,
-      flatShading: true
+      flatShading: true,
+      roughness: 0.5,
+      reflectivity: 1.
     });
     material.onBeforeCompile = compose(
       includeTerrainShader({
         speed: 0.1,
-        displacement: 12,
-        pathSize: 0.05,
+        displacement: 100,
+        pathSize: 0.1,
         dithering: true,
         step: segments / size
       }),
