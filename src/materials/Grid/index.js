@@ -27,7 +27,6 @@ export const includeGridShader = ({
     uSize: new THREE.Uniform(size)
   })
 
-  console.log(shader.vertexShader  )
   shader.vertexShader = `${VERTEX_HELPERS}\n` + shader.vertexShader;
   shader.vertexShader = shader.vertexShader.replace(
     '#include <worldpos_vertex>',

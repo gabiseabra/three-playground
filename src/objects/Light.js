@@ -1,32 +1,43 @@
 import * as THREE from "three";
-import { WORLD_RADIUS } from '/config'
+import {
+  HEMISPHERE_LIGHT,
+  AMBIENT_LIGHT,
+  DIRECTIONAL_LIGHT,
+  POINT_LIGHT,
+  CAMERA_LIGHT
+} from '/config'
 
 export class WorldLight extends THREE.Object3D {
-  constructor(far = WORLD_RADIUS) {
+  name = 'light'
+
+  constructor() {
     super()
 
-    const hemisphere = new THREE.HemisphereLight(0xff9ed5, 0xe6179a, 1.25);
+    const hemisphere = HEMISPHERE_LIGHT.clone()
+    hemisphere.name = 'hemisphere'
     this.add(hemisphere);
 
-    const ambient = new THREE.AmbientLight(0xe6179a, 0.5);
+    const ambient = AMBIENT_LIGHT.clone()
+    ambient.name = 'ambient'
     this.add(ambient);
 
-    const directional = new THREE.DirectionalLight(0xff9ed5, 0.4);
-    directional.position.set(0,1,0.25).normalize();
+    const directional = DIRECTIONAL_LIGHT.clone()
+    directional.name = 'directional'
     this.add(directional);
     
-    const point = new THREE.PointLight(0x50004, far * .75, far * 2, 10);
-    point.position.set(0, far / 4, -far)
+    const point = POINT_LIGHT.clone()
+    point.name = 'point'
     this.add(point);
   }
 }
 
 export class CameraLight extends THREE.Object3D {
-  constructor(far = WORLD_RADIUS) {
-    super()
+  name = 'light'
 
-    const point = new THREE.PointLight(0x000040, far * .75, far * 2, 20);
-    point.position.set(0, 0, 0)
-    // this.add(point);
+  constructor() {
+    super()
+    const point = CAMERA_LIGHT.clone()
+    point.name = 'point'
+    this.add(point);
   }
 }

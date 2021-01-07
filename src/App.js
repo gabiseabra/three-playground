@@ -13,6 +13,7 @@ import { HeatPass } from "/postprocessing/Heat";
 import { Scene } from "./Scene";
 import { CAM_FOV, DEG } from "./config";
 import { CameraLight } from "/objects/Light";
+import { mkGUI} from '/lib/GUI'
 
 const mkComposer = ({ scene, camera, renderer }) => {
   const composer = new EffectComposer(renderer, {
@@ -70,7 +71,8 @@ export class App {
     this.camera = new THREE.PerspectiveCamera(CAM_FOV, this.width / this.height, 1, CAM_FAR);
     this.camera.add(new CameraLight())
     this.camera.position.z = 100
-    this.camera.position.y = 500
+    this.camera.position.y = 50
+    this.camera.lookAt(new THREE.Vector3(0, 100, -1000));
     // this.camera.position.z = Z0 + CAM_NEAR;
     // this.camera.position.y = -50
     // this.camera.rotateX(-5 * DEG)
@@ -81,10 +83,10 @@ export class App {
       antialias: true
     })
 
-    this.controls = new OrbitControls(this.camera, this.element)
+    // this.controls = new OrbitControls(this.camera, this.element)
     this.composer = mkComposer(this)
     this.clock = new THREE.Clock(true)
-
+    this.gui = mkGUI(this)
 
     this.updateSize();
   }

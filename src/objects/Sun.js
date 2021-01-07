@@ -11,6 +11,7 @@ export const MATERIAL = new THREE.MeshLambertMaterial({
 
 export class Sun extends THREE.Object3D {
   size = 1;
+  name = 'sun'
 
   constructor(radius) {
     super();
