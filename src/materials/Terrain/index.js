@@ -5,7 +5,7 @@ import FRAGMENT_HELPERS from './Terrain.frag'
 const BEGIN_VERTEX = `
 #include <begin_vertex>
 
-transformedNormal = normalMatrix * calcNormal(uv);
+// transformedNormal = normalMatrix * calcNormal(uv);
 transformed = calcPosition(transformed, uv);
 `
 

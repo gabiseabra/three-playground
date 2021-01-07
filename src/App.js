@@ -12,6 +12,7 @@ import { CAM_NEAR, CAM_FAR, Z0, Z1 } from "/config";
 import { HeatPass } from "/postprocessing/Heat";
 import { Scene } from "./Scene";
 import { CAM_FOV, DEG } from "./config";
+import { CameraLight } from "/objects/Light";
 
 const mkComposer = ({ scene, camera, renderer }) => {
   const composer = new EffectComposer(renderer, {
@@ -65,26 +66,25 @@ export class App {
 
   constructor() {
     this.scene = new Scene();
-    this.camera = new THREE.PerspectiveCamera(
-      CAM_FOV,
-      this.width / this.height,
-      1,
-      CAM_FAR * 2
-    );
-    this.renderer = new THREE.WebGLRenderer({
-      powerPreference: "high-performance",
-      antialias: true
-    });
 
-    this.controls = new OrbitControls(this.camera, this.element);
-    this.composer = mkComposer(this);
-    this.clock = new THREE.Clock(true);
-
-    this.camera.position.z = 2000
-    this.camera.position.y = 200
+    this.camera = new THREE.PerspectiveCamera(CAM_FOV, this.width / this.height, 1, CAM_FAR);
+    this.camera.add(new CameraLight())
+    this.camera.position.z = 100
+    this.camera.position.y = 500
     // this.camera.position.z = Z0 + CAM_NEAR;
     // this.camera.position.y = -50
     // this.camera.rotateX(-5 * DEG)
+
+    this.scene.add(this.camera)
+    this.renderer = new THREE.WebGLRenderer({
+      powerPreference: "high-performance",
+      antialias: true
+    })
+
+    this.controls = new OrbitControls(this.camera, this.element)
+    this.composer = mkComposer(this)
+    this.clock = new THREE.Clock(true)
+
 
     this.updateSize();
   }
@@ -117,7 +117,6 @@ export class App {
     this.composer.render(d);
   }
 }
-
 
 function updateMesh(mesh, delta) {
   updateMaterial(mesh.material, delta)

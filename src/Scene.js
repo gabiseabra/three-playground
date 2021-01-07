@@ -1,33 +1,27 @@
 import * as THREE from "three";
-import { Light } from "/objects/Light";
+import { WorldLight } from "/objects/Light";
 import { Sky } from "/objects/Sky";
-import { Horizon } from "/objects/Horizon";
+import { Sun } from "/objects/Sun";
 import { Terrain } from "/objects/Terrain";
-import { DEG } from "./config";
+import { WORLD_RADIUS, DEG } from "./config";
 
 export class Scene extends THREE.Scene {
   background = new THREE.Color(0xffeadb);
 
   constructor() {
-    super();
-    this.sky = new Sky()
-    this.light = new Light()
+    super()
+    const light = new WorldLight(WORLD_RADIUS)
+    this.add(light)
 
-    this.terrain = new Terrain()
-    this.terrain.rotateX(-90 * DEG)
-    
-    this.horizon = new Horizon()
-    this.horizon.position.y = 100
-    this.horizon.position.z = -1000
-    this.horizon.scale.setScalar(10)
+    const sky = new Sky(WORLD_RADIUS)
+    this.add(sky)
 
-    for (const obj of [
-      this.sky,
-      this.light,
-      this.horizon,
-      this.terrain
-    ]) {
-      this.add(obj);
-    }
+    const sun = new Sun(WORLD_RADIUS / 6)
+    sun.position.set(0, WORLD_RADIUS / 8, -WORLD_RADIUS)
+    this.add(sun)
+
+    const terrain = new Terrain({ size: WORLD_RADIUS * 2 })
+    terrain.rotateX(-90 * DEG)
+    this.add(terrain)
   }
 }
