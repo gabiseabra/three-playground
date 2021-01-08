@@ -76,4 +76,4 @@ var t,e,n=module.exports={};function r(){throw new Error("setTimeout has not bee
 var process = require("process");
 var e=require("process");require("./styles.css");var n=o(require("lodash.debounce")),i=require("/lib/GUI"),r=require("/Canvas"),t=require("/theme/Effects"),d=o(require("/theme/config"));function o(e){return e&&e.__esModule?e:{default:e}}function u(){var o=new r.Canvas(window.innerWidth,window.innerHeight,d.default),u=new i.GUI(o),s=new t.Effects(o);"production"==e.NODE_ENV&&u.close(),document.body.appendChild(o.element),window.addEventListener("resize",(0,n.default)(function(){o.setSize(window.innerWidth,window.innerHeight),s.setSize(window.innerWidth,window.innerHeight)},200)),function e(){s.render(),requestAnimationFrame(e)}()}u();
 },{"./styles.css":"Tnu0","lodash.debounce":"PZFh","/lib/GUI":"Q4Eb","/Canvas":"fImP","/theme/Effects":"k5pu","/theme/config":"j65R","process":"pBGv"}]},{},["Focm"], null)
-//# sourceMappingURL=src.afbf4199.js.map
+//# sourceMappingURL=src.538acf8a.js.map
