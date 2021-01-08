@@ -1,16 +1,16 @@
-import Dat from 'dat.gui';
+import Dat from 'dat.gui'
 import {addObject} from './properties'
 
 export class GUI extends Dat.GUI {
-  constructor({ scene }) {
+  constructor({scene}) {
     super()
 
-    const terrain = scene.getObjectByName('terrain');
-    const sun = scene.getObjectByName('sun');
-    const sky = scene.getObjectByName('sky');
-    const worldLight = scene.getObjectByName('worldLight');
-    const sunLight = scene.getObjectByName('sunLight');
-    const cameraLight = scene.getObjectByName('cameraLight');
+    const terrain = scene.getObjectByName('terrain')
+    const sun = scene.getObjectByName('sun')
+    const sky = scene.getObjectByName('sky')
+    const worldLight = scene.getObjectByName('worldLight')
+    const sunLight = scene.getObjectByName('sunLight')
+    const cameraLight = scene.getObjectByName('cameraLight')
 
     addObject(this, 'World light', worldLight)
     addObject(this, 'Sun light', sunLight)

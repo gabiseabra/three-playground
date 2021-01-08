@@ -11,10 +11,7 @@ const addProperty = (gui, obj) => ([name, opts = {}]) => {
 const noop = () => null
 
 function addValue(gui, obj, prop, opts = {}) {
-  const {
-    name = prop.split('.').pop(),
-    onChange = noop
-  } = opts
+  const {name = prop.split('.').pop(), onChange = noop} = opts
   const val = get(obj, prop)
 
   if (val instanceof THREE.Color) {
@@ -36,39 +33,26 @@ function addValue(gui, obj, prop, opts = {}) {
 export function getGUI(obj) {
   if (obj.getGUI) return obj.getGUI()
   // Materials
-  if (obj instanceof THREE.MeshBasicMaterial)
-    return [['color']]
-  if (obj instanceof THREE.MeshStandardMaterial ||
-      obj instanceof THREE.MeshLambertMaterial)
-    return [
-      ['color'],
-      ['emissive'],
-      ['emissiveIntensity', {min: 0, max: 1}]
-    ]
+  if (obj instanceof THREE.MeshBasicMaterial) return [['color']]
+  if (
+    obj instanceof THREE.MeshStandardMaterial ||
+    obj instanceof THREE.MeshLambertMaterial
+  )
+    return [['color'], ['emissive'], ['emissiveIntensity', {min: 0, max: 1}]]
   // Lights
   if (obj instanceof THREE.PointLight)
     return [
       ['color'],
       ['intensity', {min: 0, max: 1000}],
-      ['distance', {min:0, max: 10000}],
-      ['decay', {min:0, max: 100}]
+      ['distance', {min: 0, max: 10000}],
+      ['decay', {min: 0, max: 100}]
     ]
   if (obj instanceof THREE.HemisphereLight)
-    return [
-      ['color'],
-      ['groundColor'],
-      ['intensity', {min: 0, max: 10}]
-    ]
+    return [['color'], ['groundColor'], ['intensity', {min: 0, max: 10}]]
   if (obj instanceof THREE.AmbientLight)
-    return [
-      ['color'],
-      ['intensity', {min: 0, max: 10}]
-    ]
+    return [['color'], ['intensity', {min: 0, max: 10}]]
   if (obj instanceof THREE.DirectionalLight)
-    return [
-      ['color'],
-      ['intensity', {min: 0, max: 10}]
-    ]
+    return [['color'], ['intensity', {min: 0, max: 10}]]
 }
 
 export function addObject(gui, name, obj) {

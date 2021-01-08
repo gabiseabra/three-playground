@@ -1,4 +1,4 @@
-import { WorldLight, SunLight, CameraLight } from './Lights'
+import {WorldLight, SunLight, CameraLight} from './Lights'
 
 const WORLD_RADIUS = 1500
 const SUN_DISTANCE = WORLD_RADIUS + 400
@@ -24,7 +24,7 @@ export default {
   sun: {
     color: 0xf79b5e,
     glowColor: 0xed4577,
-    emissiveIntensity: .5,
+    emissiveIntensity: 0.5,
     radius: WORLD_RADIUS / 6,
     distance: -SUN_DISTANCE
   }

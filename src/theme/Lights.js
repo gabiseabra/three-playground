@@ -1,5 +1,5 @@
-import * as THREE from "three";
-import { animateObject3D } from '/lib/animateObject3D'
+import * as THREE from 'three'
+import {animateObject3D} from '/lib/animateObject3D'
 
 export class WorldLight extends THREE.Object3D {
   name = 'worldLight'
@@ -9,15 +9,15 @@ export class WorldLight extends THREE.Object3D {
 
     const hemisphere = new THREE.HemisphereLight(0xff9ed5, 0x57006b, 1.25)
     hemisphere.name = 'hemisphere'
-    this.add(hemisphere);
+    this.add(hemisphere)
 
     const ambient = new THREE.AmbientLight(0xe6179a, 0.5)
     ambient.name = 'ambient'
-    this.add(ambient);
+    this.add(ambient)
 
     const directional = new THREE.DirectionalLight(0xff9ed5, 0.4)
     directional.name = 'directional'
-    this.add(directional);
+    this.add(directional)
 
     this.hemisphere = hemisphere
     this.ambient = ambient
@@ -60,6 +60,6 @@ export class CameraLight extends THREE.Object3D {
     super()
     const point = new THREE.PointLight(0x0000ff, 10, 1000, 10)
     point.name = 'cameraLight'
-    this.add(point);
+    this.add(point)
   }
 }

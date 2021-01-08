@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from 'three'
 import vertexShader from './Atmosphere.vert'
 import fragmentShader from './Atmosphere.frag'
 
@@ -16,9 +16,9 @@ export class AtmosphereMaterial extends THREE.ShaderMaterial {
         mieCoefficient: new THREE.Uniform(0.0035),
         mieDirectionalG: new THREE.Uniform(0.8),
         sunPosition: new THREE.Uniform(new THREE.Vector3()),
-        up: new THREE.Uniform(new THREE.Vector3( 0, 1, 0 ))
-      },
-    });
+        up: new THREE.Uniform(new THREE.Vector3(0, 1, 0))
+      }
+    })
   }
 
   getGUI() {
@@ -26,7 +26,7 @@ export class AtmosphereMaterial extends THREE.ShaderMaterial {
       ['uniforms.turbidity', {min: 0, max: 1}],
       ['uniforms.rayleigh', {min: 0, max: 100}],
       ['uniforms.mieCoefficient', {min: 0, max: 1}],
-      ['uniforms.mieDirectionalG', {min: 0, max: 1}],
+      ['uniforms.mieDirectionalG', {min: 0, max: 1}]
     ]
   }
 }

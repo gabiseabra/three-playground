@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from 'three'
 import {compose} from '/lib/composeShaders'
 import {includeGridShader} from '/materials/Grid'
 import {includeTerrainShader} from '/materials/Terrain'
@@ -22,7 +22,12 @@ export class Terrain extends THREE.Mesh {
       gridColor: new THREE.Uniform(new THREE.Color(gridColor))
     }
 
-    const geometry = new THREE.PlaneBufferGeometry(size, size, segments, segments);
+    const geometry = new THREE.PlaneBufferGeometry(
+      size,
+      size,
+      segments,
+      segments
+    )
 
     const material = new THREE.MeshPhysicalMaterial({
       color,
@@ -30,8 +35,8 @@ export class Terrain extends THREE.Mesh {
       emissiveIntensity,
       flatShading: true,
       roughness: 0.5,
-      reflectivity: 1.
-    });
+      reflectivity: 1
+    })
     material.onBeforeCompile = compose(
       includeTerrainShader({
         time: uniforms.time,
@@ -60,9 +65,9 @@ export class Terrain extends THREE.Mesh {
     return [
       [null, {target: this.material}],
       ['uniforms.gridColor'],
-      ['uniforms.gridSize', {min:1, max: 100}],
-      ['uniforms.displacement', {min:0, max: 200}],
-      ['uniforms.pathSize', {min:0.05, max: 1}]
+      ['uniforms.gridSize', {min: 1, max: 100}],
+      ['uniforms.displacement', {min: 0, max: 200}],
+      ['uniforms.pathSize', {min: 0.05, max: 1}]
     ]
   }
 }

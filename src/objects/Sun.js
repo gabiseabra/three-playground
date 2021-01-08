@@ -1,6 +1,6 @@
-import * as THREE from "three";
-import { InnerGlow, OuterGlow } from "/objects/Glow";
-import { animateObject3D } from '/lib/animateObject3D'
+import * as THREE from 'three'
+import {InnerGlow, OuterGlow} from '/objects/Glow'
+import {animateObject3D} from '/lib/animateObject3D'
 
 export class Sun extends THREE.Object3D {
   size = 1
@@ -11,15 +11,15 @@ export class Sun extends THREE.Object3D {
     radius,
     color = 0xf79b5e,
     emissive,
-    emissiveIntensity = .5,
+    emissiveIntensity = 0.5,
     glowColor = 0xed4577
   }) {
-    super();
+    super()
 
-    const lowPoly = new THREE.SphereGeometry(radius, 15, 15);
-    const highPoly = new THREE.SphereGeometry(radius, 25, 25);
+    const lowPoly = new THREE.SphereGeometry(radius, 15, 15)
+    const highPoly = new THREE.SphereGeometry(radius, 25, 25)
 
-    lowPoly.computeFlatVertexNormals();
+    lowPoly.computeFlatVertexNormals()
 
     const sphere = new THREE.Mesh(
       lowPoly,
@@ -54,17 +54,16 @@ export class Sun extends THREE.Object3D {
 
   getGUI() {
     return [
-      ['glowColor', {
-        onChange: () => {
-          this.innerGlow.material.uniforms.color.value.copy(
-            this.glowColor
-          )
-          this.outerGlow.material.uniforms.color.value.copy(
-            this.glowColor
-          )
+      [
+        'glowColor',
+        {
+          onChange: () => {
+            this.innerGlow.material.uniforms.color.value.copy(this.glowColor)
+            this.outerGlow.material.uniforms.color.value.copy(this.glowColor)
+          }
         }
-      }],
-      [null, { target: this.sphere.material }]
+      ],
+      [null, {target: this.sphere.material}]
     ]
   }
 }

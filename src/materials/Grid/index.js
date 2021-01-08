@@ -14,26 +14,27 @@ gl_FragColor.rgb = mix(gl_FragColor.rgb, uColor.rgb, line);
 `
 
 export const includeGridShader = ({
-    time,
-    color,
-    speed = new THREE.Uniform(0.1),
-    size = new THREE.Uniform(10),
-  } = {}) => function (shader) {
-  Object.assign(shader.uniforms, {
-    time: time,
-    uColor: color,
-    uSpeed: speed,
-    uSize: size
-  })
+  time,
+  color,
+  speed = new THREE.Uniform(0.1),
+  size = new THREE.Uniform(10)
+} = {}) =>
+  function (shader) {
+    Object.assign(shader.uniforms, {
+      time: time,
+      uColor: color,
+      uSpeed: speed,
+      uSize: size
+    })
 
-  shader.vertexShader = `${VERTEX_HELPERS}\n` + shader.vertexShader;
-  shader.vertexShader = shader.vertexShader.replace(
-    '#include <worldpos_vertex>',
-    WORLDPOS_VERTEX
-  )
-  shader.fragmentShader = `${FRAGMENT_HELPERS}\n` + shader.fragmentShader;
-  shader.fragmentShader = shader.fragmentShader.replace(
-    /(^\s*gl_FragColor\s*=.+;)/m,
-    `$&\n${COLOR_FRAGMENT}`
-  );
-}
+    shader.vertexShader = `${VERTEX_HELPERS}\n` + shader.vertexShader
+    shader.vertexShader = shader.vertexShader.replace(
+      '#include <worldpos_vertex>',
+      WORLDPOS_VERTEX
+    )
+    shader.fragmentShader = `${FRAGMENT_HELPERS}\n` + shader.fragmentShader
+    shader.fragmentShader = shader.fragmentShader.replace(
+      /(^\s*gl_FragColor\s*=.+;)/m,
+      `$&\n${COLOR_FRAGMENT}`
+    )
+  }

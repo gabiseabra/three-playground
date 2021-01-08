@@ -1,15 +1,15 @@
-import * as THREE from "three";
-import { Sky } from "/objects/Sky";
-import { Sun } from "/objects/Sun";
-import { Terrain } from "/objects/Terrain";
+import * as THREE from 'three'
+import {Sky} from '/objects/Sky'
+import {Sun} from '/objects/Sun'
+import {Terrain} from '/objects/Terrain'
 
 const ANGLE = Symbol('ANGLE')
 
 export class Scene extends THREE.Scene {
-  background = new THREE.Color(0xffeadb);
+  background = new THREE.Color(0xffeadb)
   sunPosition = new THREE.Vector3()
 
-  constructor({ camera, config }) {
+  constructor({camera, config}) {
     super()
 
     const sunPivot = new THREE.Object3D()
@@ -59,7 +59,7 @@ export class Scene extends THREE.Scene {
 
     this.updateAngle()
   }
-  
+
   updateAngle() {
     this.sunPivot.rotation.x = this.angle
     this.sky.material.uniforms.sunPosition.value.copy(this.sunPosition)
@@ -67,8 +67,6 @@ export class Scene extends THREE.Scene {
   }
 
   getGUI() {
-    return [
-      ['angle', {min: 0, max: Math.PI}]
-    ]
+    return [['angle', {min: 0, max: Math.PI}]]
   }
 }

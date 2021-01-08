@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from 'three'
 import vertexShader from './Glow.vert'
 import fragmentShader from './Glow.frag'
 
@@ -11,10 +11,10 @@ export class GlowMaterial extends THREE.ShaderMaterial {
     blendFunction = THREE.NormalBlending
   }) {
     super({
-      uniforms: { 
+      uniforms: {
         coefficient: new THREE.Uniform(coefficient),
         power: new THREE.Uniform(power),
-        color: new THREE.Uniform(new THREE.Color(color)),
+        color: new THREE.Uniform(new THREE.Color(color))
       },
       vertexShader,
       fragmentShader,
@@ -22,6 +22,6 @@ export class GlowMaterial extends THREE.ShaderMaterial {
       depthWrite: false,
       blendFunction,
       side
-    });
+    })
   }
 }
