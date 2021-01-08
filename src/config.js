@@ -5,6 +5,7 @@ export const DEG = Math.PI / 180
 
 // scale
 export const WORLD_RADIUS = 1500
+export const SUN_DISTANCE = WORLD_RADIUS * 1.15
 
 // perspective
 export const CAM_FOV = 45
@@ -15,7 +16,7 @@ export const Z0 = 0
 export const Z1 = 50
 
 // Lights
-export const HEMISPHERE_LIGHT = new THREE.HemisphereLight(0xff9ed5, 0xe6179a, 1.25)
+export const HEMISPHERE_LIGHT = new THREE.HemisphereLight(0xff9ed5, 0x57006b, 1.25)
 export const AMBIENT_LIGHT = new THREE.AmbientLight(0xe6179a, 0.5)
 export const DIRECTIONAL_LIGHT = new THREE.DirectionalLight(0xff9ed5, 0.4);
 DIRECTIONAL_LIGHT.position.set(0,1,0.25).normalize()

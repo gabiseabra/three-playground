@@ -4,7 +4,7 @@ import { Sky } from "/objects/Sky";
 import { Sun } from "/objects/Sun";
 import { Terrain } from "/objects/Terrain";
 import { pivot } from '/lib/pivot'
-import { WORLD_RADIUS, DEG } from "./config";
+import { WORLD_RADIUS, SUN_DISTANCE, DEG } from "./config";
 
 const ANGLE = Symbol('ANGLE')
 
@@ -16,7 +16,7 @@ export class Scene extends THREE.Scene {
     super()
 
     const sun = new Sun(WORLD_RADIUS / 6)
-    sun.position.z = -WORLD_RADIUS
+    sun.position.z = -SUN_DISTANCE
     this.add(pivot(sun))
     
     const light = new WorldLight(-WORLD_RADIUS)

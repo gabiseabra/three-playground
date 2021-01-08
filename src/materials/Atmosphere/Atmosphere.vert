@@ -20,7 +20,7 @@ const float pi = 3.141592653589793238462643383279502884197169;
 const vec3 lambda = vec3( 680E-9, 550E-9, 450E-9 );
 		// this pre-calcuation replaces older TotalRayleigh(vec3 lambda) function:
 		// (8.0 * pow(pi, 3.0) * pow(pow(n, 2.0) - 1.0, 2.0) * (6.0 + 3.0 * pn)) / (3.0 * N * pow(lambda, vec3(4.0)) * (6.0 - 7.0 * pn))
-const vec3 totalRayleigh = vec3( 2.804542996261093E-6, 1.3562911419845635E-5, 2.0265902468824876E-5 );
+const vec3 totalRayleigh = vec3( 0.804542996261093E-6, 1.3562911419845635E-5, 2.0265902468824876E-5 );
 
 		// mie stuff
 		// K coefficient for the primaries
@@ -32,7 +32,7 @@ const vec3 MieConst = vec3( 1.8399918514433978E14, 2.7798023919660528E14, 4.0790
 		// earth shadow hack
 		// cutoffAngle = pi / 1.95;
 const float cutoffAngle = 1.6110731556870734;
-const float steepness = 2.;
+const float steepness = 3.;
 const float EE = 1000.0;
 
 float sunIntensity( float zenithAngleCos ) {

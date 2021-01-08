@@ -22,7 +22,7 @@ const mkComposer = ({ scene, camera, renderer }) => {
 
   const bokeh = new RealisticBokehEffect({
     blendFunction: BlendFunction.NORMAL,
-    focus: Z0,
+    focus: 0.,
     luminanceGain: 0.0,
     bias: 10.0,
     fringe: 10.0,
@@ -41,8 +41,8 @@ const mkComposer = ({ scene, camera, renderer }) => {
 
   for (const pass of [
     new RenderPass(scene, camera),
-    ///new EffectPass(camera, bokeh),
-    //new HeatPass(camera)
+    // new EffectPass(camera, bokeh),
+    new HeatPass(camera)
   ])
     composer.addPass(pass);
 
