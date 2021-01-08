@@ -12,8 +12,9 @@ export const MATERIAL = new THREE.MeshLambertMaterial({
 export class Sun extends THREE.Object3D {
   size = 1;
   name = 'sun'
+  castShadow = true
 
-  constructor(radius) {
+  constructor(radius, distance, angle) {
     super();
 
     const lowPoly = new THREE.SphereGeometry(radius, 15, 15);
@@ -28,5 +29,26 @@ export class Sun extends THREE.Object3D {
     this.add(new OuterGlow(highPoly, {
       color: new THREE.Color(0xed4577),
     }))
+
+    this.distance = distance
+    this.angle = angle
+  }
+
+  get angle() {
+    return Math.atan(-this.position.y / this.position.z)
+  }
+
+  set angle(a) {
+    this.position.z = Math.cos(a) * this.distance
+    this.position.y = Math.sin(a) * -this.distance
+  }
+
+  getGUI() {
+    return [
+      {prop: 'angle', min: 0, max: Math.PI, onChange: (_, {camera, scene}) => {
+        camera.lookAt(this.position)
+        //camera.updateProjectionMatrix()
+      }}
+    ]
   }
 }

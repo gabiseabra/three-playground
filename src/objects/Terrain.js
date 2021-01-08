@@ -6,6 +6,7 @@ import { TERRAIN_MATERIAL } from '/config'
 
 export class Terrain extends THREE.Mesh {
   name = 'terrain'
+  receiveShadow = true
 
   constructor({
     size,

@@ -10,15 +10,16 @@ export class Scene extends THREE.Scene {
 
   constructor() {
     super()
+    const sun = new Sun(WORLD_RADIUS / 6, -WORLD_RADIUS, 6 * DEG)
+    this.add(sun)
+
+    console.log(sun.position)
     const light = new WorldLight(WORLD_RADIUS)
     this.add(light)
 
     const sky = new Sky(WORLD_RADIUS)
+    sky.material.uniforms.sunPosition.value = sun.position
     this.add(sky)
-
-    const sun = new Sun(WORLD_RADIUS / 6)
-    sun.position.set(0, WORLD_RADIUS / 8, -WORLD_RADIUS)
-    this.add(sun)
 
     const terrain = new Terrain({ size: WORLD_RADIUS * 2 })
     terrain.rotateX(-90 * DEG)

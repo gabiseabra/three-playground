@@ -3,9 +3,7 @@ import vertexShader from './Atmosphere.vert'
 import fragmentShader from './Atmosphere.frag'
 
 export class AtmosphereMaterial extends THREE.ShaderMaterial {
-  constructor({
-    groundColor = new THREE.Color(0xfafafa)
-  } = {}) {
+  constructor() {
     super({
       vertexShader,
       fragmentShader,
@@ -14,10 +12,10 @@ export class AtmosphereMaterial extends THREE.ShaderMaterial {
       depthTest: true,
       uniforms: {
         turbidity: new THREE.Uniform(1),
-        rayleigh: new THREE.Uniform(2),
+        rayleigh: new THREE.Uniform(37),
         mieCoefficient: new THREE.Uniform(0.0035),
         mieDirectionalG: new THREE.Uniform(0.8),
-        sunPosition: new THREE.Uniform(new THREE.Vector3(0, 100, -2000)),
+        sunPosition: new THREE.Uniform(new THREE.Vector3()),
         up: new THREE.Uniform(new THREE.Vector3( 0, 1, 0 ))
       },
     });

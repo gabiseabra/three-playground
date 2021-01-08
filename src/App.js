@@ -72,7 +72,8 @@ export class App {
     this.camera.add(new CameraLight())
     this.camera.position.z = 100
     this.camera.position.y = 50
-    this.camera.lookAt(new THREE.Vector3(0, 100, -1000));
+    this.camera.target =
+      this.scene.getObjectByName('sun');
     // this.camera.position.z = Z0 + CAM_NEAR;
     // this.camera.position.y = -50
     // this.camera.rotateX(-5 * DEG)
