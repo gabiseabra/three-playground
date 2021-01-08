@@ -15,7 +15,6 @@ export class Canvas {
       1,
       config.camera.far
     )
-    this.camera.position.y = 50
 
     this.scene = new Scene(this)
 

@@ -3,11 +3,12 @@ import {Sky} from '/objects/Sky'
 import {Sun} from '/objects/Sun'
 import {Terrain} from '/objects/Terrain'
 
-const ANGLE = Symbol('ANGLE')
+const lerp = (v0, v1, t) => v0 * (1 - t) + v1 * t
 
 export class Scene extends THREE.Scene {
   background = new THREE.Color(0xffeadb)
   sunPosition = new THREE.Vector3()
+  sunRotation = Math.PI * 0.97
 
   constructor({camera, config}) {
     super()
@@ -16,11 +17,11 @@ export class Scene extends THREE.Scene {
     this.add(sunPivot)
 
     const sun = new Sun(config.sun)
-    sun.position.z = config.sun.distance
+    sun.position.z = -config.sun.distance
     sunPivot.add(sun)
 
     const sunLight = config.lights.sun
-    sunLight.position.z = config.sun.distance
+    sunLight.position.z = -config.sun.distance
     sunPivot.add(sunLight)
 
     const worldLight = config.lights.world
@@ -28,6 +29,7 @@ export class Scene extends THREE.Scene {
 
     const cameraLight = config.lights.camera
     camera.add(cameraLight)
+    camera.position.y = 50
     this.add(camera)
 
     const sky = new Sky(config.world)
@@ -44,26 +46,34 @@ export class Scene extends THREE.Scene {
     this.sunPivot = sunPivot
     this.camera = camera
 
-    this.worldRadius = config.world.radius
-    this.angle = Math.PI * 0.95
+    this.sunDistance = config.sun.distance
+    this.angle = Math.PI * 0
   }
 
   get angle() {
-    return this[ANGLE]
+    return this.cameraAngle
   }
 
   set angle(a) {
-    this[ANGLE] = a
-    this.sunPosition.z = Math.cos(a) * this.worldRadius
-    this.sunPosition.y = Math.sin(a) * this.worldRadius
+    const d = a - (this.cameraAngle || 0)
+    this.cameraAngle = a
+    this.sunAngle = lerp(
+      Math.PI - this.sunRotation,
+      this.sunRotation,
+      a / Math.PI
+    )
 
-    this.updateAngle()
+    this.updateAngle(d)
   }
 
   updateAngle() {
-    this.sunPivot.rotation.x = -this.angle
+    this.sunPosition.z = Math.cos(this.sunAngle) * -this.sunDistance
+    this.sunPosition.y = Math.sin(this.sunAngle) * this.sunDistance
+    this.sunPivot.rotation.x = this.sunAngle
+
     this.sky.material.uniforms.sunPosition.value.copy(this.sunPosition)
-    this.camera.lookAt(this.sunPosition)
+
+    this.camera.rotation.set(this.cameraAngle, 0, this.cameraAngle)
   }
 
   getGUI() {

@@ -5,7 +5,11 @@ const SUN_DISTANCE = WORLD_RADIUS + 400
 
 export default {
   world: {
-    radius: WORLD_RADIUS
+    radius: WORLD_RADIUS,
+    turbidity: 1,
+    rayleigh: 7,
+    mieCoefficient: 0.0035,
+    mieDirectionalG: 0.8
   },
   camera: {
     fov: 45,
