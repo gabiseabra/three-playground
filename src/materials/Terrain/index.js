@@ -16,15 +16,14 @@ if (clipCircle(vUv)) discard;
 `
 
 export const includeTerrainShader = ({
+    uTime,
     step,
     speed = 0.5,
     displacement = 5,
     pathSize = 0,
   } = {}) => function (shader) {
-  this.uTime = new THREE.Uniform(0)
-
   Object.assign(shader.uniforms, {
-    time: this.uTime,
+    time: uTime,
     uSpeed: new THREE.Uniform(speed),
     uDisplacement: new THREE.Uniform(displacement),
     uPathSize: new THREE.Uniform(pathSize),

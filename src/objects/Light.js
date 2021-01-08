@@ -10,6 +10,8 @@ import {
 
 export class WorldLight extends THREE.Object3D {
   name = 'light'
+  pointPosition = 0
+  pointSpeed = 0.05
 
   constructor() {
     super()
@@ -29,6 +31,13 @@ export class WorldLight extends THREE.Object3D {
     const point = POINT_LIGHT.clone()
     point.name = 'point'
     this.add(pivot(point))
+
+    this.point = point
+  }
+
+  animate() {
+    this.pointPosition += this.pointSpeed
+    this.point.position.x = 10 * Math.sin(this.pointPosition)
   }
 }
 

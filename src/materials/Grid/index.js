@@ -14,14 +14,13 @@ gl_FragColor.rgb = mix(gl_FragColor.rgb, uColor.rgb, line);
 `
 
 export const includeGridShader = ({
+    uTime,
     color = 0x000000,
     speed = .5,
     size = 10,
   } = {}) => function (shader) {
-  this.uTime = new THREE.Uniform(0)
-
   Object.assign(shader.uniforms, {
-    time: this.uTime,
+    time: uTime,
     uColor: new THREE.Uniform(new THREE.Color(color)),
     uSpeed: new THREE.Uniform(speed),
     uSize: new THREE.Uniform(size)

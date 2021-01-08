@@ -12,6 +12,8 @@ export const MATERIAL = new THREE.MeshLambertMaterial({
 export class Sun extends THREE.Object3D {
   size = 1;
   name = 'sun'
+  rotationSpeed = 0.005
+  rotationPosition = 0
 
   constructor(radius) {
     super();
@@ -28,5 +30,11 @@ export class Sun extends THREE.Object3D {
     this.add(new OuterGlow(highPoly, {
       color: new THREE.Color(0xed4577),
     }))
+    this.rotateX(0.15)
+  }
+
+  animate() {
+    this.rotationPosition += this.rotationSpeed
+    this.rotateY(this.rotationSpeed)
   }
 }

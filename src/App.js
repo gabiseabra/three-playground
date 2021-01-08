@@ -87,6 +87,7 @@ export class App {
     this.gui = mkGUI(this)
 
     this.updateSize();
+    this.update();
   }
 
   updateSize() {
@@ -108,22 +109,25 @@ export class App {
     this.camera.updateProjectionMatrix();
   }
 
+  update() {
+    this.updateCallback = mkUpdateCallback(this)
+  }
+
   render() {
-    const d = this.clock.getDelta()
+    const t = this.clock.getDelta()
     this.updateSize();
-    this.scene.traverse((child) => {
-      if (child.isMesh) updateMesh(child, d)
-    });
-    this.composer.render(d);
+    this.updateCallback(t);
+    this.composer.render(t);
   }
 }
 
-function updateMesh(mesh, delta) {
-  updateMaterial(mesh.material, delta)
-}
+function mkUpdateCallback({ scene }) {
+  const animations = []
 
-function updateMaterial(material, delta) {
-  if (material.uTime) {
-    material.uTime.value += delta
-  }
+  scene.traverse((obj) => {
+    if (obj.animate)
+      animations.push(obj.animate.bind(obj))
+  })
+
+  return (t) => animations.forEach(fn => fn(t))
 }
