@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,UAEE,SAAU,CACV,QAAS,CACT,WAAY,CACZ,UACF,CAEA,KACE,sBACF","file":"src.b1ba5858.css","sourceRoot":"../src","sourcesContent":["html,\nbody {\n  padding: 0;\n  margin: 0;\n  height: 100%;\n  width: 100%;\n}\n\nbody {\n  font-family: sans-serif;\n}\n"]}
