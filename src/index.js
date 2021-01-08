@@ -1,14 +1,27 @@
 import "./styles.css";
-import { App } from "./App";
+import debounce from 'lodash.debounce'
+import { GUI } from "/lib/GUI"
+import { Canvas } from "/Canvas"
+import { Effects } from '/theme/Effects'
+import theme from '/theme/config'
 
 function main() {
-  const app = new App(window.innerWidth, window.innerHeight);
+  const canvas = new Canvas(window.innerWidth, window.innerHeight, theme)
+  const gui = new GUI(canvas)
+  const composer = new Effects(canvas)
 
-  document.body.appendChild(app.element);
+  if (process.NODE_ENV == 'production') gui.close()
+
+  document.body.appendChild(canvas.element);
+
+  window.addEventListener('resize', debounce(() => {
+    canvas.setSize(window.innerWidth, window.innerHeight)
+    composer.setSize(window.innerWidth, window.innerHeight)
+  }, 200))
 
   function animate() {
-    app.render();
-    requestAnimationFrame(animate);
+    composer.render()
+    requestAnimationFrame(animate)
   }
 
   animate();
