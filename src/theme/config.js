@@ -1,6 +1,6 @@
 import { WorldLight, SunLight, CameraLight } from './Lights'
 
-const WORLD_RADIUS = 2500
+const WORLD_RADIUS = 1500
 const SUN_DISTANCE = WORLD_RADIUS + 400
 
 export default {

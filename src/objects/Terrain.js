@@ -5,7 +5,6 @@ import {includeTerrainShader} from '/materials/Terrain'
 
 export class Terrain extends THREE.Mesh {
   name = 'terrain'
-  speed = 0.01
 
   constructor({
     size,
@@ -15,7 +14,13 @@ export class Terrain extends THREE.Mesh {
     segments = 25,
     gridColor = 0x6260eb
   }) {
-    const uTime = new THREE.Uniform(0)
+    const uniforms = {
+      time: new THREE.Uniform(0),
+      displacement: new THREE.Uniform(100),
+      pathSize: new THREE.Uniform(0.1),
+      gridSize: new THREE.Uniform(11),
+      gridColor: new THREE.Uniform(new THREE.Color(gridColor))
+    }
 
     const geometry = new THREE.PlaneBufferGeometry(size, size, segments, segments);
 
@@ -29,25 +34,35 @@ export class Terrain extends THREE.Mesh {
     });
     material.onBeforeCompile = compose(
       includeTerrainShader({
-        uTime,
-        displacement: 110,
-        pathSize: 0.1,
+        time: uniforms.time,
+        displacement: uniforms.displacement,
+        pathSize: uniforms.pathSize,
         step: segments / size
       }),
       includeGridShader({
-        uTime,
-        size: 11,
-        color: gridColor
+        time: uniforms.time,
+        size: uniforms.gridSize,
+        color: uniforms.gridColor
       })
     )
 
     super(geometry, material)
 
     this.clock = new THREE.Clock()
-    this.uTime = uTime
+    this.uniforms = uniforms
   }
 
   onBeforeRender() {
-    this.uTime.value += this.clock.getDelta()
+    this.uniforms.time.value += this.clock.getDelta()
+  }
+
+  getGUI() {
+    return [
+      [null, {target: this.material}],
+      ['uniforms.gridColor'],
+      ['uniforms.gridSize', {min:1, max: 100}],
+      ['uniforms.displacement', {min:0, max: 200}],
+      ['uniforms.pathSize', {min:0.05, max: 1}]
+    ]
   }
 }

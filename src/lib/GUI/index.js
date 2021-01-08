@@ -15,7 +15,7 @@ export class GUI extends Dat.GUI {
     addObject(this, 'World light', worldLight)
     addObject(this, 'Sun light', sunLight)
     addObject(this, 'Camera light', cameraLight)
-    addObject(this, 'Terrain', terrain.material)
+    addObject(this, 'Terrain', terrain)
     addObject(this, 'Sky', sky.material)
     addObject(this, 'Sun', sun)
     addObject(this, 'Scene', scene)

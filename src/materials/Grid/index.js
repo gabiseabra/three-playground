@@ -14,16 +14,16 @@ gl_FragColor.rgb = mix(gl_FragColor.rgb, uColor.rgb, line);
 `
 
 export const includeGridShader = ({
-    uTime,
-    color = 0x000000,
-    speed = 0.1,
-    size = 10,
+    time,
+    color,
+    speed = new THREE.Uniform(0.1),
+    size = new THREE.Uniform(10),
   } = {}) => function (shader) {
   Object.assign(shader.uniforms, {
-    time: uTime,
-    uColor: new THREE.Uniform(new THREE.Color(color)),
-    uSpeed: new THREE.Uniform(speed),
-    uSize: new THREE.Uniform(size)
+    time: time,
+    uColor: color,
+    uSpeed: speed,
+    uSize: size
   })
 
   shader.vertexShader = `${VERTEX_HELPERS}\n` + shader.vertexShader;
