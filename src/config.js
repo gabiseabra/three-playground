@@ -20,7 +20,7 @@ export const AMBIENT_LIGHT = new THREE.AmbientLight(0xe6179a, 0.5)
 export const DIRECTIONAL_LIGHT = new THREE.DirectionalLight(0xff9ed5, 0.4);
 DIRECTIONAL_LIGHT.position.set(0,1,0.25).normalize()
 export const POINT_LIGHT = new THREE.PointLight(0x7d0700, 100, WORLD_RADIUS * 3, 10)
-POINT_LIGHT.position.set(0, WORLD_RADIUS / 4, -WORLD_RADIUS)
+POINT_LIGHT.position.set(0, 0, -WORLD_RADIUS)
 export const CAMERA_LIGHT = new THREE.PointLight(0x0000ff, 10, WORLD_RADIUS, 10)
 
 // Materials

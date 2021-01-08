@@ -100,7 +100,9 @@ export function mkGUI(ctx) {
   addLight(gui, ctx, 'Camera light', cameraLight.getObjectByName('point'))
   addMaterial(gui, ctx, 'Terrain', terrain.material)
   addMaterial(gui, ctx, 'Sky', sky.material)
-  addObject(gui, ctx, 'Sun', sun)
+  addObject(gui, ctx, 'Scene', scene)
+
+  // gui.close()
 
   return gui
 }

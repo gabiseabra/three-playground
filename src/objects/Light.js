@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { pivot } from '/lib/pivot'
 import {
   HEMISPHERE_LIGHT,
   AMBIENT_LIGHT,
@@ -24,10 +25,10 @@ export class WorldLight extends THREE.Object3D {
     const directional = DIRECTIONAL_LIGHT.clone()
     directional.name = 'directional'
     this.add(directional);
-    
+
     const point = POINT_LIGHT.clone()
     point.name = 'point'
-    this.add(point);
+    this.add(pivot(point))
   }
 }
 

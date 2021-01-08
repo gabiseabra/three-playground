@@ -66,14 +66,11 @@ export class App {
   }
 
   constructor() {
-    this.scene = new Scene();
-
     this.camera = new THREE.PerspectiveCamera(CAM_FOV, this.width / this.height, 1, CAM_FAR);
     this.camera.add(new CameraLight())
-    this.camera.position.z = 100
     this.camera.position.y = 50
-    this.camera.target =
-      this.scene.getObjectByName('sun');
+
+    this.scene = new Scene(this.camera);
     // this.camera.position.z = Z0 + CAM_NEAR;
     // this.camera.position.y = -50
     // this.camera.rotateX(-5 * DEG)
