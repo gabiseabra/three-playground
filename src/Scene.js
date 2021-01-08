@@ -45,7 +45,7 @@ export class Scene extends THREE.Scene {
     this.camera = camera
 
     this.worldRadius = config.world.radius
-    this.angle = Math.PI / 24
+    this.angle = Math.PI * 0.95
   }
 
   get angle() {
@@ -54,14 +54,14 @@ export class Scene extends THREE.Scene {
 
   set angle(a) {
     this[ANGLE] = a
-    this.sunPosition.z = Math.cos(a) * -this.worldRadius
+    this.sunPosition.z = Math.cos(a) * this.worldRadius
     this.sunPosition.y = Math.sin(a) * this.worldRadius
 
     this.updateAngle()
   }
 
   updateAngle() {
-    this.sunPivot.rotation.x = this.angle
+    this.sunPivot.rotation.x = -this.angle
     this.sky.material.uniforms.sunPosition.value.copy(this.sunPosition)
     this.camera.lookAt(this.sunPosition)
   }

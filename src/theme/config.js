@@ -26,6 +26,6 @@ export default {
     glowColor: 0xed4577,
     emissiveIntensity: 0.5,
     radius: WORLD_RADIUS / 6,
-    distance: -SUN_DISTANCE
+    distance: SUN_DISTANCE
   }
 }
