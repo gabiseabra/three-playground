@@ -1,7 +1,9 @@
 {
-  "name": "vanilla",
+  "name": "@gabiseabra/three-playground",
   "version": "1.0.0",
-  "description": "JavaScript example starter project",
+  "description": "Experimental Three.JS scene",
+  "homepage": "https://gabiseabra.github.io/three-playground",
+  "license": "MIT",
   "main": "index.html",
   "scripts": {
     "start": "parcel src/index.html",
