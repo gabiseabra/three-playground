@@ -23,10 +23,10 @@ export class AtmosphereMaterial extends THREE.ShaderMaterial {
 
   getGUI() {
     return [
-      {prop: 'uniforms.turbidity', min: 0, max: 1},
-      {prop: 'uniforms.rayleigh', min: 0, max: 100},
-      {prop: 'uniforms.mieCoefficient', min: 0, max: 1},
-      {prop: 'uniforms.mieDirectionalG', min: 0, max: 1},
+      ['uniforms.turbidity', {min: 0, max: 1}],
+      ['uniforms.rayleigh', {min: 0, max: 100}],
+      ['uniforms.mieCoefficient', {min: 0, max: 1}],
+      ['uniforms.mieDirectionalG', {min: 0, max: 1}],
     ]
   }
 }

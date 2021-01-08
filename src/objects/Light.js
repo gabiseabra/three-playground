@@ -10,8 +10,6 @@ import {
 
 export class WorldLight extends THREE.Object3D {
   name = 'light'
-  pointPosition = 0
-  pointSpeed = 0.05
 
   constructor() {
     super()
@@ -27,17 +25,26 @@ export class WorldLight extends THREE.Object3D {
     const directional = DIRECTIONAL_LIGHT.clone()
     directional.name = 'directional'
     this.add(directional);
+  }
+}
+
+export class SunLight extends THREE.Object3D {
+  state = 0
+  speed = 0.05
+
+  constructor() {
+    super()
 
     const point = POINT_LIGHT.clone()
-    point.name = 'point'
-    this.add(pivot(point))
+    point.name = 'sunLight'
+    this.add(point)
 
     this.point = point
   }
 
   animate() {
-    this.pointPosition += this.pointSpeed
-    this.point.position.x = 10 * Math.sin(this.pointPosition)
+    this.state += this.speed
+    this.point.position.x = 10 * Math.sin(this.state)
   }
 }
 
@@ -47,7 +54,7 @@ export class CameraLight extends THREE.Object3D {
   constructor() {
     super()
     const point = CAMERA_LIGHT.clone()
-    point.name = 'point'
+    point.name = 'cameraLight'
     this.add(point);
   }
 }
