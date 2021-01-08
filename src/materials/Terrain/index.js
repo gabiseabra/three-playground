@@ -18,7 +18,7 @@ if (clipCircle(vUv)) discard;
 export const includeTerrainShader = ({
     uTime,
     step,
-    speed = 0.5,
+    speed = 0.1,
     displacement = 5,
     pathSize = 0,
   } = {}) => function (shader) {

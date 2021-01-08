@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { pivot } from '/lib/pivot'
+import { animateObject3D } from '/lib/animateObject3D'
 import {
   HEMISPHERE_LIGHT,
   AMBIENT_LIGHT,
@@ -39,10 +39,12 @@ export class SunLight extends THREE.Object3D {
     point.name = 'sunLight'
     this.add(point)
 
+    animateObject3D(this)
+
     this.point = point
   }
 
-  animate() {
+  onBeforeRender() {
     this.state += this.speed
     this.point.position.x = 10 * Math.sin(this.state)
   }

@@ -17,7 +17,9 @@ export class Scene extends THREE.Scene {
     const sunPivot = new THREE.Group()
     this.add(sunPivot)
 
-    const sun = new Sun(WORLD_RADIUS / 6)
+    const sun = new Sun({
+      radius: WORLD_RADIUS / 6
+    })
     sun.position.z = -SUN_DISTANCE
     sunPivot.add(sun)
 
@@ -25,7 +27,7 @@ export class Scene extends THREE.Scene {
     sunLight.position.z = -SUN_DISTANCE
     sunPivot.add(sunLight)
 
-    const worldLight = new WorldLight(-WORLD_RADIUS)
+    const worldLight = new WorldLight()
     this.add(worldLight)
 
     const cameraLight = new CameraLight()

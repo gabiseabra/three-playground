@@ -49,23 +49,12 @@ const mkComposer = ({ scene, camera, renderer }) => {
 };
 
 export class App {
-  composerScale = 1.5;
-  currentSize = {};
-
-  get width() {
-    return window.innerWidth;
-  }
-
-  get height() {
-    return window.innerHeight;
-  }
-
   get element() {
     return this.renderer.domElement;
   }
 
-  constructor() {
-    this.camera = new THREE.PerspectiveCamera(CAM_FOV, this.width / this.height, 1, CAM_FAR);
+  constructor(width, height) {
+    this.camera = new THREE.PerspectiveCamera(CAM_FOV, width / height, 1, CAM_FAR);
     this.camera.position.y = 50
 
     this.scene = new Scene(this.camera);
@@ -80,48 +69,23 @@ export class App {
     this.clock = new THREE.Clock(true)
     this.gui = new GUI(this)
 
-    this.updateSize();
-    this.update();
+    this.setSize(width, height);
   }
 
-  updateSize() {
-    if (
-      this.width === this.currentSize.width &&
-      this.height === this.currentSize.height
-    )
-      return;
-    const composerScale = 1.5;
-    this.composer.setSize(
-      this.width * composerScale,
-      this.height * composerScale
-    );
+  setSize(width, height) {
+    if (this.width === width && this.height === height) return
+
+    this.width = width
+    this.height = height
+
+    this.composer.setSize(this.width, this.height);
     this.renderer.setSize(this.width, this.height);
-    this.renderer.uniforms = {
-      time: new THREE.Uniform(0)
-    }
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
   }
 
-  update() {
-    this.updateCallback = mkUpdateCallback(this)
-  }
-
   render() {
     const t = this.clock.getDelta()
-    this.updateSize();
-    this.updateCallback(t);
     this.composer.render(t);
   }
-}
-
-function mkUpdateCallback({ scene }) {
-  const animations = []
-
-  scene.traverse((obj) => {
-    if (obj.animate)
-      animations.push(obj.animate.bind(obj))
-  })
-
-  return (t) => animations.forEach(fn => fn(t))
 }

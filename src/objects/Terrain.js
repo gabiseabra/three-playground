@@ -6,11 +6,11 @@ import { TERRAIN_MATERIAL } from '/config'
 
 export class Terrain extends THREE.Mesh {
   name = 'terrain'
-  
+
   constructor({
     size,
     segments = 25,
-    gridColor = 0x6260eb
+    gridColor = 0x6260eb,
   } = {}) {
     const uTime = new THREE.Uniform(0)
     const geometry = new THREE.PlaneBufferGeometry(size, size, segments, segments);
@@ -19,7 +19,6 @@ export class Terrain extends THREE.Mesh {
     material.onBeforeCompile = compose(
       includeTerrainShader({
         uTime,
-        speed: 0.1,
         displacement: 100,
         pathSize: 0.1,
         dithering: true,
@@ -27,7 +26,6 @@ export class Terrain extends THREE.Mesh {
       }),
       includeGridShader({
         uTime,
-        speed: 0.1,
         size: 11,
         color: gridColor
       })
@@ -35,11 +33,11 @@ export class Terrain extends THREE.Mesh {
 
     super(geometry, material)
 
+    this.clock = new THREE.Clock()
     this.uTime = uTime
-    console.log(this.uTime)
   }
 
-  animate(t) {
-    this.uTime.value += t
+  onBeforeRender() {
+    this.uTime.value += this.clock.getDelta()
   }
 }

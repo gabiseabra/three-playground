@@ -16,7 +16,7 @@ gl_FragColor.rgb = mix(gl_FragColor.rgb, uColor.rgb, line);
 export const includeGridShader = ({
     uTime,
     color = 0x000000,
-    speed = .5,
+    speed = 0.1,
     size = 10,
   } = {}) => function (shader) {
   Object.assign(shader.uniforms, {

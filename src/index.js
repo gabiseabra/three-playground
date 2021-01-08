@@ -2,7 +2,7 @@ import "./styles.css";
 import { App } from "./App";
 
 function main() {
-  const app = new App();
+  const app = new App(window.innerWidth, window.innerHeight);
 
   document.body.appendChild(app.element);
 

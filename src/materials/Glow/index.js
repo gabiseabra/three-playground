@@ -14,7 +14,7 @@ export class GlowMaterial extends THREE.ShaderMaterial {
       uniforms: { 
         coefficient: new THREE.Uniform(coefficient),
         power: new THREE.Uniform(power),
-        color: new THREE.Uniform(color),
+        color: new THREE.Uniform(new THREE.Color(color)),
       },
       vertexShader,
       fragmentShader,
