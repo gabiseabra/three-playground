@@ -26,9 +26,9 @@ export class WorldLight extends THREE.Object3D {
 
   getGUI() {
     return [
-      [null, {target: this.hemisphere}],
-      [null, {target: this.ambient}],
-      [null, {target: this.directional}]
+      ['hemisphere', {target: this.hemisphere}],
+      ['ambient', {target: this.ambient}],
+      ['directional', {target: this.directional}]
     ]
   }
 }
