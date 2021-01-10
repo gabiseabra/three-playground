@@ -4,14 +4,17 @@ import {GUI} from '/lib/GUI'
 import {Canvas} from '/Canvas'
 import {Effects} from '/theme/Effects'
 import theme from '/theme/config'
+import Stats from 'three/examples/jsm/libs/stats.module'
 
 function main() {
+  const stats = new Stats()
   const canvas = new Canvas(window.innerWidth, window.innerHeight, theme)
   const gui = new GUI(canvas)
   const composer = new Effects(canvas)
 
-  if (process.NODE_ENV == 'production') gui.close()
+  gui.close()
 
+  document.body.appendChild(stats.dom)
   document.body.appendChild(canvas.element)
 
   window.addEventListener(
@@ -24,6 +27,7 @@ function main() {
 
   function animate() {
     composer.render()
+    stats.update()
     requestAnimationFrame(animate)
   }
 
