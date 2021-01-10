@@ -1,21 +1,23 @@
 uniform float time;
-uniform float uSpeed;
-uniform float uDisplacement;
-uniform float uPathSize;
-uniform float uStep;
+uniform float speed;
+uniform float displacement;
+uniform float pathSize;
+uniform float vertexStep;
+
+varying vec3 vPos;
 
 #pragma glslify: snoise = require('glsl-noise/simplex/3d')
 
 float fz(vec2 uv) {
   float f = 5.;
-  float t = time * (uSpeed / f);
+  float t = time * (speed / f);
   float d = snoise(vec3(
     uv.x * f,
     (uv.y + t) * f,
     0.
   )) + 0.5;
-  d *= uDisplacement;
-  d *= mix(0.05, 1., smoothstep(0., uPathSize, abs(uv.x - 0.5)));
+  d *= displacement;
+  d *= mix(0.05, 1., smoothstep(0., pathSize, abs(uv.x - 0.5)));
 
   return d;
 }
@@ -25,7 +27,7 @@ vec3 calcPosition() {
 }
 
 vec3 calcNormal() {
-  vec3 off = vec3(uStep, uStep, 0.0);
+  vec3 off = vec3(vertexStep, vertexStep, 0.0);
   float hL = fz(uv.xy - off.xz);
   float hR = fz(uv.xy + off.xz);
   float hD = fz(uv.xy - off.zy);
