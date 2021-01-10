@@ -1,80 +1,107 @@
 import * as THREE from 'three'
 import getVertexData from 'three-geometry-data'
 import {CloudMaterial} from '/materials/Cloud'
-import mkCSG from 'three-js-csg'
 import {animateObject3D} from '/lib/animateObject3D'
 import {RoundedBoxGeometry} from './RoundedBoxGeometry'
 import {Vector3} from 'three'
 
-const CSG = mkCSG(THREE)
-
 export class Cloud extends THREE.Mesh {
-  constructor({detail = 10} = {}) {
-    // const material = new CloudMaterial({
-    //   scale: 50,
-    //   displacement: 50,
-    //   color: 0xf0f0f0
-    // })
-    super()
-    const material = new THREE.MeshBasicMaterial({wireframe: true})
-    const mesh = mkCloudShape(200, 300, 200, detail, material)
+  constructor({detail = 50} = {}) {
+    const geometry = new CloudGeometry(400, 200, 200, 15, detail)
+    const cmaterial = new CloudMaterial({
+      scale: 50,
+      displacement: 100,
+      color: 0xff0000,
+      reflectivity: 1,
+      refractionRatio: 0
+    })
 
-    this.add(mesh)
+    const xmaterial = new THREE.MeshLambertMaterial({
+      reflectivity: 1,
+      refractionRatio: 0
+    })
 
-    animateObject3D(this, mesh)
+    super(geometry, xmaterial)
 
     this.clock = new THREE.Clock()
   }
 
   onBeforeRender() {
-    this.rotateZ(0.005)
+    this.rotateZ(0.01)
   }
 }
 
-function mkCloudShape(width, height, depth, detail, material) {
-  const base = new RoundedBoxGeometry(
-    width,
-    height / 4,
-    depth,
-    height / 8,
-    detail,
-    detail,
-    detail,
-    detail / 2
-  )
-  const s = Math.random()
-  const {position: V, normal: N} = getVertexData(base).attributes
-  for (let i = 0; i < V.length; i++) {
-    const vertex = V[i].divideScalar(width * 0.75 + s * depth)
-    const normal = N[i]
-    const n = Math.sin(vertex.x * 10 + vertex.z * 10) * 5
-    base.vertices[i].add(normal.multiplyScalar(n))
-  }
-  base.verticesNeedUpdate = true
-  let csg = new CSG(base)
+class CloudGeometry extends THREE.Geometry {
+  constructor(height, radius, displacement, detail) {
+    super()
 
-  let h = 0,
-    y = 0
-  for (let i = 0; i < 5 && h < height; ++i) {
-    const r = height * 0.15 + Math.random() * height * 0.15
-    const sy = 0.5 + Math.random() * 0.2
-    const geom = new THREE.TetrahedronGeometry(r, detail / 2)
-    geom.scale(1, sy, 1)
-    const pos = new Vector3(
-      sign() * Math.random() * r,
-      (Math.random() * r) / 2,
-      sign() * Math.random() * r
+    const center = rand(0.1, 0.9)
+
+    const body = new THREE.CylinderGeometry(
+      radius,
+      radius,
+      height - radius,
+      Math.PI * detail,
+      height * detail
     )
-    y += pos.y
-    h = y + r
-    geom.translate(pos.x, y, pos.z)
-    csg = csg.union(new CSG(geom))
+    this.merge(body)
+
+    const topTip = new THREE.SphereGeometry(
+      radius,
+      10,
+      3,
+      0,
+      Math.PI / 2,
+      0,
+      Math.PI / 2
+    )
+    const bottomTip = new THREE.SphereGeometry(
+      radius,
+      10,
+      3,
+      0,
+      Math.PI / 2,
+      0,
+      Math.PI / 2
+    )
+
+    const tips = [
+      topTip.clone(),
+      topTip.clone(),
+      bottomTip.clone(),
+      bottomTip.clone()
+    ]
+    tips[0].rotateZ(Math.PI / 2)
+    tips[0].translate(0, radius, 0)
+
+    tips.forEach((t) => this.merge(t))
+
+    this.mergeVertices()
+
+    distort(this, center, rand(0.3, 1), displacement)
   }
-
-  const mesh = csg.toMesh()
-  mesh.material = material
-
-  return mesh
 }
 
-const sign = () => (Math.random() > 0.5 ? 1 : -1)
+const rand = (min, max) => min + Math.random() * (max - min)
+const distort = (geom, center, scale, displacement) => {
+  geom.computeBoundingBox()
+  const {position: V, normal: N} = getVertexData(geom).attributes
+  for (let i = 0; i < V.length; i++) {
+    const vertex = V[i]
+      .clone()
+      .divide(geom.boundingBox.max)
+      .multiplyScalar(scale)
+    const normal = N[i]
+    const uv = V[i].clone().divide(geom.boundingBox.max)
+    const wave = Math.sin(vertex.x * 10 - vertex.z * 10)
+    const weight = (uv.x + 1) / 2 - center
+    const mass = 1 - THREE.MathUtils.smootherstep(Math.abs(weight), 0, 1)
+    const n = mass * (1 / 3) * displacement + wave * (1 - mass)
+
+    geom.vertices[i].add(normal.clone().multiplyScalar(n * displacement))
+    geom.vertices[i].add(
+      new THREE.Vector3(wave, wave, 0).multiplyScalar(displacement)
+    )
+  }
+  geom.verticesNeedUpdate = true
+}

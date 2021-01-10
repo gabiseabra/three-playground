@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import VERTEX from './Cloud.vert'
 
-export class CloudMaterial extends THREE.MeshBasicMaterial {
+export class CloudMaterial extends THREE.MeshLambertMaterial {
   constructor({scale = 5, displacement = 5, ...opts}) {
     super(opts)
 
