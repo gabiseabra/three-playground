@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/gabrielaseabra/.nvm/versions/node/v12.10.0/bin/node /Users/gabrielaseabra/.nvm/versions/node/v12.10.0/bin/yarn add three-csg-ts
+  /Users/gabrielaseabra/.nvm/versions/node/v12.10.0/bin/node /Users/gabrielaseabra/.nvm/versions/node/v12.10.0/bin/yarn add three-js-capsule-geometry
 
 PATH: 
   /usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:/usr/local/opt/qt/bin:/Users/gabrielaseabra/Projects/libimobiledevice-macosx:/Users/gabrielaseabra/flutter/bin:/Users/gabrielaseabra/Library/Android/sdk/platform-tools/:/Users/gabrielaseabra/Library/Android/sdk/platform-tools:/Users/gabrielaseabra/Library/Android/sdk/tools/bin:/usr/local/opt/maven/bin:/Users/gabrielaseabra/.jenv/versions/1.8/bin:/usr/local/opt/ant/bin:/Users/gabrielaseabra/.asdf/shims:/usr/local/opt/asdf/bin:/Users/gabrielaseabra/.jenv/shims:/Users/gabrielaseabra/.rbenv/shims:/Users/gabrielaseabra/.nvm/versions/node/v12.10.0/bin:/usr/local/sbin:/Users/gabrielaseabra/.fastlane/bin:/Users/gabrielaseabra/.local/bin:/Users/gabrielaseabra/.cabal/bin:/Users/gabrielaseabra/.ghcup/bin:/Users/gabrielaseabra/.opam/default/bin:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:/usr/local/opt/qt/bin:/Users/gabrielaseabra/Projects/libimobiledevice-macosx:/Users/gabrielaseabra/flutter/bin:/Users/gabrielaseabra/Library/Android/sdk/platform-tools/:/Users/gabrielaseabra/Library/Android/sdk/platform-tools:/Users/gabrielaseabra/Library/Android/sdk/tools/bin:/usr/local/opt/maven/bin:/Users/gabrielaseabra/.jenv/versions/1.8/bin:/usr/local/opt/ant/bin:/Users/gabrielaseabra/.jenv/shims:/Users/gabrielaseabra/.rbenv/shims:/Users/gabrielaseabra/.nvm/versions/node/v12.10.0/bin:/usr/local/sbin:/Users/gabrielaseabra/.fastlane/bin:/Users/gabrielaseabra/.local/bin:/Users/gabrielaseabra/.cabal/bin:/Users/gabrielaseabra/.ghcup/bin:/Users/gabrielaseabra/.opam/default/bin:/usr/local/opt/fzf/bin
@@ -14,12 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/gabrielaseabra/Projects/three-playground/package.json: Unexpected token } in JSON at position 903
-      at JSON.parse (<anonymous>)
-      at /Users/gabrielaseabra/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/lib/cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (/Users/gabrielaseabra/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/lib/cli.js:304:30)
-      at /Users/gabrielaseabra/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/lib/cli.js:315:13
+  Error: https://registry.yarnpkg.com/three-js-capsule-geometry: Not found
+      at Request.params.callback [as _callback] (/Users/gabrielaseabra/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/lib/cli.js:66926:18)
+      at Request.self.callback (/Users/gabrielaseabra/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/lib/cli.js:140564:22)
+      at Request.emit (events.js:209:13)
+      at Request.<anonymous> (/Users/gabrielaseabra/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/lib/cli.js:141536:10)
+      at Request.emit (events.js:209:13)
+      at IncomingMessage.<anonymous> (/Users/gabrielaseabra/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/lib/cli.js:141458:12)
+      at Object.onceWrapper (events.js:298:28)
+      at IncomingMessage.emit (events.js:214:15)
+      at endReadableNT (_stream_readable.js:1178:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -45,6 +50,7 @@ npm manifest:
       "glsl-fbm": "https://github.com/yiwenl/glsl-fbm.git#b748445",
       "glsl-noise": "^0.0.0",
       "glsl-worley": "^1.0.2",
+      "lib": "^4.3.0",
       "lodash.debounce": "^4.0.8",
       "lodash.get": "^4.4.2",
       "lodash.set": "^4.3.2",
@@ -53,7 +59,9 @@ npm manifest:
       "postprocessing": "6.18.0",
       "simplex-noise": "^2.4.0",
       "three": "0.123.0",
+      "three-csg-ts": "^2.0.0",
       "three-geometry-data": "^1.0.1",
+      "three-js-csg": "^72.0.0"
     },
     "devDependencies": {
       "@babel/core": "7.12.10",
@@ -4258,6 +4266,11 @@ Lockfile:
       prelude-ls "~1.1.2"
       type-check "~0.3.2"
   
+  lib@^4.3.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/lib/-/lib-4.3.0.tgz#efe87a5cf02640e2c4153b54b420076619b3adbb"
+    integrity sha512-1UtjFNb8MJzJNcIffffOJQPjAaCX8wJALpfvKBQmeWWDG39C9m9ikv0BIniLcXB8izWeOY7hmrjQqbFL4AHoTw==
+  
   locate-path@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
@@ -6365,15 +6378,20 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
     integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
   
+  three-csg-ts@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/three-csg-ts/-/three-csg-ts-2.0.0.tgz#a0ca97b4746c3dff2fbc54e2f260e4b0079cbf9d"
+    integrity sha512-i6kx7oaTQLa9kIP0p1j2TVyJMdvAu/O0DaY1jmygiSj8UdwyWAn85h8LOLyS2aZkv86ZQFouYldr2vpuaBrslQ==
+  
   three-geometry-data@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/three-geometry-data/-/three-geometry-data-1.0.1.tgz#5b14a598eb92583face67ad982ff051d261c16e2"
     integrity sha512-WPQae4XBZ8TiYXEq3sFp452zwU4W3wHooiapglK/YwtcUMuh5DULMejWm+RfIBb0EwaHw5ebdBE3fxblRZf7mg==
   
-  three-rounded-box@^0.1.1:
-    version "0.1.1"
-    resolved "https://registry.yarnpkg.com/three-rounded-box/-/three-rounded-box-0.1.1.tgz#9db98145032b188e7b6b7e497ffefb580ecd639d"
-    integrity sha1-nbmBRQMrGI57a35Jf/77WA7NY50=
+  three-js-csg@^72.0.0:
+    version "72.0.0"
+    resolved "https://registry.yarnpkg.com/three-js-csg/-/three-js-csg-72.0.0.tgz#69e6ae441f3f01089e6f13c87c7288e1c4380bbc"
+    integrity sha1-aeauRB8/AQiebxPIfHKI4cQ4C7w=
   
   three@0.123.0:
     version "0.123.0"

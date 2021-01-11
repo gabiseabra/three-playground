@@ -6283,20 +6283,16 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-three-csg-ts@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/three-csg-ts/-/three-csg-ts-2.0.0.tgz#a0ca97b4746c3dff2fbc54e2f260e4b0079cbf9d"
-  integrity sha512-i6kx7oaTQLa9kIP0p1j2TVyJMdvAu/O0DaY1jmygiSj8UdwyWAn85h8LOLyS2aZkv86ZQFouYldr2vpuaBrslQ==
+three-full@16.0.1:
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/three-full/-/three-full-16.0.1.tgz#931af0ad6782c2cbf1dec7f1ab81260747cbf2e0"
+  integrity sha512-spDTC67kX0nhUmxWLtdTGRGuuo0QGd+KoQsYAIE7Y0M1XzrfyPhx7mHA3uDsELEmgBpEbK5ZKhz/f/TxVKxU6Q==
 
-three-geometry-data@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/three-geometry-data/-/three-geometry-data-1.0.1.tgz#5b14a598eb92583face67ad982ff051d261c16e2"
-  integrity sha512-WPQae4XBZ8TiYXEq3sFp452zwU4W3wHooiapglK/YwtcUMuh5DULMejWm+RfIBb0EwaHw5ebdBE3fxblRZf7mg==
-
-three-js-csg@^72.0.0:
-  version "72.0.0"
-  resolved "https://registry.yarnpkg.com/three-js-csg/-/three-js-csg-72.0.0.tgz#69e6ae441f3f01089e6f13c87c7288e1c4380bbc"
-  integrity sha1-aeauRB8/AQiebxPIfHKI4cQ4C7w=
+"three-js-capsule-geometry@https://github.com/maximeq/three-js-capsule-geometry.git#2229bf3":
+  version "1.0.0"
+  resolved "https://github.com/maximeq/three-js-capsule-geometry.git#2229bf3628ff1378f908c3bee41e6cf5f8c41555"
+  dependencies:
+    three-full "16.0.1"
 
 three@0.123.0:
   version "0.123.0"

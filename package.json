@@ -30,9 +30,7 @@
     "postprocessing": "6.18.0",
     "simplex-noise": "^2.4.0",
     "three": "0.123.0",
-    "three-csg-ts": "^2.0.0",
-    "three-geometry-data": "^1.0.1",
-    "three-js-csg": "^72.0.0"
+    "three-js-capsule-geometry": "https://github.com/maximeq/three-js-capsule-geometry.git#2229bf3"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",

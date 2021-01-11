@@ -1,13 +1,22 @@
 import * as THREE from 'three'
 import VERTEX from './Cloud.vert'
+import FRAGMENT from './Cloud.frag'
 
 export class CloudMaterial extends THREE.MeshLambertMaterial {
-  constructor({scale = 5, displacement = 5, ...opts}) {
-    super(opts)
+  constructor({
+    scale = 5,
+    displacement = 5,
+    center = 0.5,
+    shadowColor = 0x000000,
+    ...opts
+  }) {
+    super({color: 0xffffff})
 
     this.uniforms = {
+      shadowColor: new THREE.Uniform(new THREE.Color(shadowColor)),
       displacement: new THREE.Uniform(displacement),
-      scale: new THREE.Uniform(scale)
+      scale: new THREE.Uniform(scale),
+      center: new THREE.Uniform(center)
     }
   }
 
@@ -21,22 +30,16 @@ export class CloudMaterial extends THREE.MeshLambertMaterial {
       BEGIN_VERTEX
     )
 
-    shader.fragmentShader = 'varying float vNoise;\n' + shader.fragmentShader
-    shader.fragmentShader = shader.fragmentShader.replace(
-      /(^\s*gl_FragColor\s*=.+;)/m,
-      `$&\n${COLOR_FRAGMENT}`
-    )
+    shader.fragmentShader = FRAGMENT + shader.fragmentShader
   }
 }
 
 const BEGIN_VERTEX = `
 #include <begin_vertex>
 
-// transformedNormal = normalMatrix * calcNormal();
 transformed = calcPosition();
 `
 
 const COLOR_FRAGMENT = `
-float d = smoothstep(0.4, 1., 1. - vNoise) * .2;
-gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(0.), d);
+gl_FragColor = calcColor();
 `
