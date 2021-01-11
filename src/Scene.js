@@ -43,8 +43,9 @@ export class Scene extends THREE.Scene {
     terrain.rotateX(-Math.PI / 2)
     this.add(terrain)
 
-    const cloud = new Cloud()
+    const cloud = new Cloud(config.cloud)
     cloud.position.y = 1000
+    cloud.name = 'cloud'
     this.add(cloud)
 
     this.sky = sky

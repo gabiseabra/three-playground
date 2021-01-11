@@ -26,10 +26,18 @@ export default {
     emissive: 0xff2d00
   },
   sun: {
-    color: 0xf79b5e,
     glowColor: 0xed4577,
+    color: 0xfc8870,
+    emissive: 0xf2063b,
     emissiveIntensity: 0.5,
     radius: WORLD_RADIUS / 6,
     distance: SUN_DISTANCE
+  },
+  cloud: {
+    scale: 50,
+    displacement: 50,
+    color: 0xfcfcff,
+    shadowColor: 0x606060,
+    transparent: true
   }
 }

@@ -7,15 +7,16 @@ export class CloudMaterial extends THREE.MeshLambertMaterial {
     scale = 5,
     displacement = 5,
     center = 0.5,
-    shadowColor = 0x000000,
+    shadowColor,
     ...opts
   }) {
-    super({color: 0xffffff})
+    super(opts)
 
     this.uniforms = {
       shadowColor: new THREE.Uniform(new THREE.Color(shadowColor)),
       displacement: new THREE.Uniform(displacement),
       scale: new THREE.Uniform(scale),
+      power: new THREE.Uniform(1),
       center: new THREE.Uniform(center)
     }
   }
@@ -30,7 +31,26 @@ export class CloudMaterial extends THREE.MeshLambertMaterial {
       BEGIN_VERTEX
     )
 
-    shader.fragmentShader = FRAGMENT + shader.fragmentShader
+    shader.fragmentShader =
+      FRAGMENT +
+      shader.fragmentShader.replace(
+        /(^\s*gl_FragColor\s*=.+;)/m,
+        `$&\n${COLOR_FRAGMENT}`
+      )
+  }
+
+  getGUI() {
+    return [
+      ['color'],
+      ['uniforms.shadowColor'],
+      // ['emissive'],
+      // ['emissiveIntensity', {min: 0, max: 1}],
+      ['reflectivity', {min: 0, max: 1}],
+      ['refractionRatio', {min: 0, max: 1}],
+      ['uniforms.power', {min: 0, max: 10}],
+      ['uniforms.displacement', {min: 0, max: 100}],
+      ['uniforms.scale', {min: 1, max: 100}]
+    ]
   }
 }
 

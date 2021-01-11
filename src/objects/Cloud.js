@@ -3,7 +3,7 @@ import {CloudMaterial} from '/materials/Cloud'
 import {CapsuleBufferGeometry} from './CapsuleBufferGeometry'
 
 export class Cloud extends THREE.Mesh {
-  constructor({radius = 50, height = 200, detail = 32} = {}) {
+  constructor({radius = 50, height = 200, detail = 32, ...opts} = {}) {
     const geometry = new CapsuleBufferGeometry(
       radius,
       radius,
@@ -17,9 +17,12 @@ export class Cloud extends THREE.Mesh {
     const material = new CloudMaterial({
       scale: 50,
       displacement: 50,
-      color: 0xf0f0f0,
+      shadowColor: 0x09a3cf,
+      color: 0xffffff,
       reflectivity: 1,
-      refractionRatio: 0
+      refractionRatio: 0,
+      transparent: true,
+      ...opts
     })
 
     super(geometry, material)
@@ -31,7 +34,9 @@ export class Cloud extends THREE.Mesh {
     this.rotateZ(0.01)
   }
 
-  getGUI() {}
+  getGUI() {
+    return [[null, {target: this.material}]]
+  }
 }
 
 const rand = (min, max) => min + Math.random() * (max - min)

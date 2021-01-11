@@ -8,6 +8,7 @@ export class GUI extends Dat.GUI {
     const terrain = scene.getObjectByName('terrain')
     const sun = scene.getObjectByName('sun')
     const sky = scene.getObjectByName('sky')
+    const cloud = scene.getObjectByName('cloud')
     const worldLight = scene.getObjectByName('worldLight')
     const sunLight = scene.getObjectByName('sunLight')
     const cameraLight = scene.getObjectByName('cameraLight')
@@ -18,6 +19,7 @@ export class GUI extends Dat.GUI {
     addObject(this, 'Terrain', terrain)
     addObject(this, 'Sky', sky.material)
     addObject(this, 'Sun', sun)
+    addObject(this, 'Cloud', cloud)
     addObject(this, 'Scene', scene)
   }
 }

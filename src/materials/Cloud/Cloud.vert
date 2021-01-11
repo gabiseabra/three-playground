@@ -1,5 +1,6 @@
 uniform float displacement;
 uniform float scale;
+uniform float power;
 uniform float center;
 uniform vec3 up;
 
@@ -17,7 +18,7 @@ vec3 bubble(vec3 pos) {
 
 	vOcclusion *= d;
 
-  return pos + d * displacement * normal;
+  return pos + pow(d, power) * displacement * normal;
 }
 
 vec3 distort(vec3 pos) {
@@ -29,6 +30,6 @@ vec3 distort(vec3 pos) {
 }
 
 vec3 calcPosition() {
-  vOcclusion = -1.;
+  vOcclusion = 1.;
   return bubble(distort(position));
 }
