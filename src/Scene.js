@@ -51,7 +51,6 @@ export class Scene extends THREE.Scene {
       surfaceRadius: config.world.radius,
       ...config.cloud
     })
-    clouds.name = 'cloud'
     this.add(clouds)
 
     this.sky = sky

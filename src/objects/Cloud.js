@@ -18,6 +18,8 @@ const mkCapsule = (radius, height, detail) =>
   )
 
 export class Clouds extends THREE.Mesh {
+  name = 'clouds'
+
   constructor({
     radius = 50,
     height = 200,
@@ -81,28 +83,6 @@ export class Clouds extends THREE.Mesh {
 
   onBeforeRender() {
     this.rotateY(0.002)
-  }
-
-  getGUI() {
-    return [[null, {target: this.material}]]
-  }
-}
-
-export class Cloud extends THREE.Mesh {
-  constructor({radius = 50, height = 200, detail = 16, ...opts} = {}) {
-    const geometry = mkCapsule(radius, height, detail)
-    geometry.rotateZ(Math.PI / 2)
-
-    const material = new CloudMaterial({
-      scale: 50,
-      displacement: 50,
-      shadowColor: 0x09a3cf,
-      color: 0xffffff,
-      transparent: true,
-      ...opts
-    })
-
-    super(geometry, material)
   }
 
   getGUI() {
