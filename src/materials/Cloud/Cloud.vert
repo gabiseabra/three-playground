@@ -6,7 +6,7 @@ uniform vec3 up;
 
 varying float vOcclusion;
 
-#pragma glslify: snoise = require('glsl-noise/simplex/3D')
+#pragma glslify: snoise = require('glsl-noise/simplex/3d')
 #pragma glslify: worley = require('glsl-worley/worley3D')
 
 vec3 orthogonal(vec3 v) {
