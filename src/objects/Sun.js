@@ -38,7 +38,7 @@ export class Sun extends THREE.Object3D {
     const outerGlow = new OuterGlow(highPoly, {color: glowColor})
     this.add(outerGlow)
 
-    this.rotateX(0.15)
+    this.rotateX(-0.15)
 
     animateObject3D(this, sphere)
 

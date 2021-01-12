@@ -6,10 +6,14 @@ import {Terrain} from '/objects/Terrain'
 
 const lerp = (v0, v1, t) => v0 * (1 - t) + v1 * t
 
+const ANGLE = Symbol('ANGLE')
+
 export class Scene extends THREE.Scene {
   background = new THREE.Color(0xffeadb)
   sunPosition = new THREE.Vector3()
   sunRotation = Math.PI * 0.97
+  cameraRotation = Math.PI
+  cameraAxis = new THREE.Vector3(1, 0, 1)
 
   constructor({camera, config}) {
     super()
@@ -59,29 +63,39 @@ export class Scene extends THREE.Scene {
   }
 
   get angle() {
-    return this.cameraAngle
+    return this[ANGLE]
   }
 
   set angle(a) {
-    const d = a - (this.cameraAngle || 0)
-    this.cameraAngle = a
+    const d = a - (this.angle || 0)
+
+    this[ANGLE] = a
+    this.cameraAngle = lerp(
+      Math.PI - this.cameraRotation,
+      this.cameraRotation,
+      a / Math.PI
+    )
     this.sunAngle = lerp(
       Math.PI - this.sunRotation,
       this.sunRotation,
       a / Math.PI
     )
 
-    this.updateAngle(d)
+    this.updateSun(d)
+    this.updateCamera(d)
   }
 
-  updateAngle() {
+  updateSun() {
     this.sunPosition.z = Math.cos(this.sunAngle) * -this.sunDistance
     this.sunPosition.y = Math.sin(this.sunAngle) * this.sunDistance
     this.sunPivot.rotation.x = this.sunAngle
 
     this.sky.material.uniforms.sunPosition.value.copy(this.sunPosition)
+  }
 
-    this.camera.rotation.set(this.cameraAngle, 0, this.cameraAngle)
+  updateCamera() {
+    const r = this.cameraAxis.clone().multiplyScalar(this.cameraAngle)
+    this.camera.rotation.set(r.x, r.y, r.z)
   }
 
   getGUI() {
