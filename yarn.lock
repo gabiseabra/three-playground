@@ -3330,6 +3330,10 @@ globals@^9.18.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
   integrity sha512-S0nG3CLEQiY/ILxqtztTWH/3iRRdyBLw6KMDxnKMchrtbj2OFmehVh0WUCfW3DUrIgx/qFrJPICrq4Z4sTR9UQ==
 
+"glsl-fbm@https://github.com/yiwenl/glsl-fbm.git#b748445":
+  version "1.0.0"
+  resolved "https://github.com/yiwenl/glsl-fbm.git#b74844523a7c0d5e4e51965579bc93b3b547e5c3"
+
 glsl-inject-defines@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/glsl-inject-defines/-/glsl-inject-defines-1.0.3.tgz#dd1aacc2c17fcb2bd3fc32411c6633d0d7b60fd4"
@@ -3410,6 +3414,11 @@ glsl-tokenizer@^2.0.0, glsl-tokenizer@^2.0.2:
   integrity sha512-XSZEJ/i4dmz3Pmbnpsy3cKh7cotvFlBiZnDOwnj/05EwNp2XrhQ4XKJxT7/pDt4kp4YcpRSKz8eTV7S+mwV6MA==
   dependencies:
     through2 "^0.6.3"
+
+glsl-worley@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/glsl-worley/-/glsl-worley-1.0.2.tgz#27d61fdc98b9425c6c524c435f4f554bc2186bac"
+  integrity sha1-J9Yf3Ji5QlxsUkxDX09VS8IYa6w=
 
 glslify-bundle@^5.1.1:
   version "5.1.1"
@@ -4162,6 +4171,11 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+lib@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/lib/-/lib-4.3.0.tgz#efe87a5cf02640e2c4153b54b420076619b3adbb"
+  integrity sha512-1UtjFNb8MJzJNcIffffOJQPjAaCX8wJALpfvKBQmeWWDG39C9m9ikv0BIniLcXB8izWeOY7hmrjQqbFL4AHoTw==
+
 locate-path@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
@@ -4871,6 +4885,16 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+perlin-noise-3d@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/perlin-noise-3d/-/perlin-noise-3d-0.5.4.tgz#884080e6e5fe0dd5dcdf66f4f8c334b50f948ace"
+  integrity sha512-4BbwqQ/e8HjumsaiWSemu9FggqbbX4NeEtLaWvK3554YcnqmK6APtOAAqZ9xT8lFdKCGYgpUPAhaPOHCJuvEyw==
+
+perlin-noise@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/perlin-noise/-/perlin-noise-0.0.1.tgz#62cc69c40a17b19cd44077c4032c21c1cfdf34ed"
+  integrity sha1-YsxpxAoXsZzUQHfEAywhwc/fNO0=
 
 physical-cpu-count@^2.0.0:
   version "2.0.0"
@@ -5911,6 +5935,11 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
+simplex-noise@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/simplex-noise/-/simplex-noise-2.4.0.tgz#81b3458fb22dccc3bc8dd9a977c73797f86f523a"
+  integrity sha512-OjyDWm/QZjVbMrPxDVi9b2as+SeNn9EBXlrWVRlFW+TSyWMSXouDryXkQN0vf5YP+QZKobrmkvx1eQYPLtuqfw==
+
 slice-ansi@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-4.0.0.tgz#500e8dd0fd55b05815086255b3195adf2a45fe6b"
@@ -6253,6 +6282,17 @@ text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
+
+three-full@16.0.1:
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/three-full/-/three-full-16.0.1.tgz#931af0ad6782c2cbf1dec7f1ab81260747cbf2e0"
+  integrity sha512-spDTC67kX0nhUmxWLtdTGRGuuo0QGd+KoQsYAIE7Y0M1XzrfyPhx7mHA3uDsELEmgBpEbK5ZKhz/f/TxVKxU6Q==
+
+"three-js-capsule-geometry@https://github.com/maximeq/three-js-capsule-geometry.git#2229bf3":
+  version "1.0.0"
+  resolved "https://github.com/maximeq/three-js-capsule-geometry.git#2229bf3628ff1378f908c3bee41e6cf5f8c41555"
+  dependencies:
+    three-full "16.0.1"
 
 three@0.123.0:
   version "0.123.0"

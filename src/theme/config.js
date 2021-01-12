@@ -22,14 +22,26 @@ export default {
     camera: new CameraLight()
   },
   terrain: {
-    color: 0x6c784a,
+    color: 0x895c5c,
     emissive: 0xff2d00
   },
   sun: {
-    color: 0xf79b5e,
     glowColor: 0xed4577,
+    color: 0xfc8870,
+    emissive: 0xf2063b,
     emissiveIntensity: 0.5,
     radius: WORLD_RADIUS / 6,
     distance: SUN_DISTANCE
+  },
+  cloud: {
+    power: 1.5,
+    count: 10,
+    scale: 60,
+    displacement: 50,
+    detail: 16,
+    color: 0xfcfcff,
+    shadowColor: 0x606060,
+    transparent: true,
+    surfaceOffset: 200
   }
 }

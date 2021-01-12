@@ -7,11 +7,11 @@ export class WorldLight extends THREE.Object3D {
   constructor() {
     super()
 
-    const hemisphere = new THREE.HemisphereLight(0xff9ed5, 0x57006b, 1.25)
+    const hemisphere = new THREE.HemisphereLight(0xffaac4, 0x2d2d2d, 1.25)
     hemisphere.name = 'hemisphere'
     this.add(hemisphere)
 
-    const ambient = new THREE.AmbientLight(0xe6179a, 0.5)
+    const ambient = new THREE.AmbientLight(0xffaac4, 0.5)
     ambient.name = 'ambient'
     this.add(ambient)
 
