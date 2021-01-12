@@ -32,7 +32,7 @@ export class CloudMaterial extends THREE.MeshLambertMaterial {
     )
 
     shader.fragmentShader =
-      FRAGMENT +
+      `${FRAGMENT}\n` +
       shader.fragmentShader.replace(
         /(^\s*gl_FragColor\s*=.+;)/m,
         `$&\n${COLOR_FRAGMENT}`
@@ -43,10 +43,6 @@ export class CloudMaterial extends THREE.MeshLambertMaterial {
     return [
       ['color'],
       ['uniforms.shadowColor'],
-      // ['emissive'],
-      // ['emissiveIntensity', {min: 0, max: 1}],
-      ['reflectivity', {min: 0, max: 1}],
-      ['refractionRatio', {min: 0, max: 1}],
       ['uniforms.power', {min: 0, max: 10}],
       ['uniforms.displacement', {min: 0, max: 100}],
       ['uniforms.scale', {min: 1, max: 100}]

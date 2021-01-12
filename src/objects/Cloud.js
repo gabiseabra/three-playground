@@ -1,18 +1,12 @@
 import * as THREE from 'three'
+import {BufferGeometryUtils} from 'three/examples/jsm/utils/BufferGeometryUtils'
+import {MeshSurfaceSampler} from 'three/examples/jsm/math/MeshSurfaceSampler'
 import {CloudMaterial} from '/materials/Cloud'
 import {CapsuleBufferGeometry} from './CapsuleBufferGeometry'
 
 export class Cloud extends THREE.Mesh {
-  constructor({radius = 50, height = 200, detail = 32, ...opts} = {}) {
-    const geometry = new CapsuleBufferGeometry(
-      radius,
-      radius,
-      height,
-      detail * Math.PI,
-      detail,
-      detail,
-      detail
-    )
+  constructor({radius = 50, height = 200, detail = 16, ...opts} = {}) {
+    const geometry = new RandomCloudGeometry(radius, height, detail)
 
     const material = new CloudMaterial({
       scale: 50,
@@ -36,6 +30,24 @@ export class Cloud extends THREE.Mesh {
 
   getGUI() {
     return [[null, {target: this.material}]]
+  }
+}
+
+class RandomCloudGeometry extends THREE.Geometry {
+  constructor(radius, height, detail) {
+    super()
+
+    const geom = new CapsuleBufferGeometry(
+      radius,
+      radius,
+      height,
+      detail * Math.PI,
+      (detail / 4) * height,
+      detail,
+      detail
+    )
+
+    this.fromBufferGeometry(geom)
   }
 }
 
