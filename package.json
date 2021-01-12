@@ -18,19 +18,13 @@
   },
   "dependencies": {
     "dat.gui": "^0.7.7",
-    "glsl-fbm": "https://github.com/yiwenl/glsl-fbm.git#b748445",
     "glsl-noise": "^0.0.0",
     "glsl-worley": "^1.0.2",
-    "lib": "^4.3.0",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "perlin-noise": "^0.0.1",
-    "perlin-noise-3d": "^0.5.4",
-    "postprocessing": "6.18.0",
-    "simplex-noise": "^2.4.0",
-    "three": "0.123.0",
-    "three-js-capsule-geometry": "https://github.com/maximeq/three-js-capsule-geometry.git#2229bf3"
+    "postprocessing": "^6.19.1",
+    "three": "^0.124.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
