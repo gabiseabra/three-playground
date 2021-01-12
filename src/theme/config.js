@@ -22,7 +22,7 @@ export default {
     camera: new CameraLight()
   },
   terrain: {
-    color: 0x895c5c,
+    color: 0x985c4a,
     emissive: 0xff2d00
   },
   sun: {
