@@ -2,29 +2,22 @@ import * as THREE from 'three'
 import VERTEX from './Cloud.vert'
 import FRAGMENT from './Cloud.frag'
 
-export class CloudMaterial extends THREE.MeshLambertMaterial {
-  constructor({
-    scale = 5,
-    displacement = 5,
-    center = 0.5,
-    shadowColor,
-    ...opts
-  }) {
+export class CloudMaterial extends THREE.MeshPhysicalMaterial {
+  constructor({scale = 5, displacement = 5, shadowColor, ...opts}) {
     super(opts)
 
     this.uniforms = {
       shadowColor: new THREE.Uniform(new THREE.Color(shadowColor)),
       displacement: new THREE.Uniform(displacement),
       scale: new THREE.Uniform(scale),
-      power: new THREE.Uniform(1),
-      center: new THREE.Uniform(center)
+      power: new THREE.Uniform(1)
     }
   }
 
   onBeforeCompile(shader) {
     Object.assign(shader.uniforms, this.uniforms)
 
-    shader.defines = {USE_UV: true}
+    // shader.defines = {USE_TANGENT: true}
     shader.vertexShader = `${VERTEX}\n` + shader.vertexShader
     shader.vertexShader = shader.vertexShader.replace(
       '#include <begin_vertex>',
@@ -53,7 +46,7 @@ export class CloudMaterial extends THREE.MeshLambertMaterial {
 const BEGIN_VERTEX = `
 #include <begin_vertex>
 
-transformed = calcPosition();
+calcPosition(transformed, transformedNormal);
 `
 
 const COLOR_FRAGMENT = `
