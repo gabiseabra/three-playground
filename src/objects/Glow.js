@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import {GlowMaterial} from '/materials/Glow'
+import {GlowMaterial} from '../materials/Glow'
 
 const scale = (geometry, x) => geometry.clone().scale(x, x, x)
 

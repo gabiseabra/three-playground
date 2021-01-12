@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import {InnerGlow, OuterGlow} from '/objects/Glow'
-import {animateObject3D} from '/lib/animateObject3D'
+import {InnerGlow, OuterGlow} from './Glow'
+import {animateObject3D} from '../lib/animateObject3D'
 
 export class Sun extends THREE.Object3D {
   size = 1

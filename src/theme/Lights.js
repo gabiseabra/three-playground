@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import {animateObject3D} from '/lib/animateObject3D'
+import {animateObject3D} from '../lib/animateObject3D'
 
 export class WorldLight extends THREE.Object3D {
   name = 'worldLight'

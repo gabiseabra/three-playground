@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import {TerrainMaterial} from '/materials/Terrain'
+import {TerrainMaterial} from '../materials/Terrain'
 
 export class Terrain extends THREE.Mesh {
   name = 'terrain'

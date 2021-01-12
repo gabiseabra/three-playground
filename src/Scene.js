@@ -1,8 +1,8 @@
 import * as THREE from 'three'
-import {Clouds} from '/objects/Cloud'
-import {Sky} from '/objects/Sky'
-import {Sun} from '/objects/Sun'
-import {Terrain} from '/objects/Terrain'
+import {Clouds} from './objects/Cloud'
+import {Sky} from './objects/Sky'
+import {Sun} from './objects/Sun'
+import {Terrain} from './objects/Terrain'
 
 const lerp = (v0, v1, t) => v0 * (1 - t) + v1 * t
 

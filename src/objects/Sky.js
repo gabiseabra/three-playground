@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import {AtmosphereMaterial} from '/materials/Atmosphere'
+import {AtmosphereMaterial} from '../materials/Atmosphere'
 
 export class Sky extends THREE.Mesh {
   name = 'sky'

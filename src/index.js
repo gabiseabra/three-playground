@@ -1,10 +1,10 @@
 import './styles.css'
 import debounce from 'lodash.debounce'
-import {GUI} from '/lib/GUI'
-import {Canvas} from '/Canvas'
-import {Scene} from '/Scene'
-import {Effects} from '/theme/Effects'
-import theme from '/theme/config'
+import {GUI} from './lib/GUI'
+import {Canvas} from './Canvas'
+import {Scene} from './Scene'
+import {Effects} from './theme/Effects'
+import theme from './theme/config'
 import Stats from 'three/examples/jsm/libs/stats.module'
 
 function main() {

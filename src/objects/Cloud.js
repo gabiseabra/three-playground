@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import {MeshSurfaceSampler} from 'three/examples/jsm/math/MeshSurfaceSampler'
 import {BufferGeometryUtils} from 'three/examples/jsm/utils/BufferGeometryUtils'
-import {CloudMaterial} from '/materials/Cloud'
+import {CloudMaterial} from '../materials/Cloud'
 import {CapsuleBufferGeometry} from './CapsuleBufferGeometry'
 
 const rand = (min, max) => min + Math.random() * (max - min)
