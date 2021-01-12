@@ -11,7 +11,7 @@ import {HeatPass} from '/postprocessing/Heat'
 export class Effects extends EffectComposer {
   dof = new THREE.Vector4(0.225, 1.0, 0.225, 2.0)
 
-  constructor({scene, camera, renderer, width, height}) {
+  constructor(scene, {camera, renderer, width, height}) {
     super(renderer, {
       frameBufferType: THREE.HalfFloatType
     })

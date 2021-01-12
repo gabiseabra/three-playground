@@ -2,7 +2,7 @@ import Dat from 'dat.gui'
 import {addObject} from './properties'
 
 export class GUI extends Dat.GUI {
-  constructor({scene}) {
+  constructor(scene) {
     super()
 
     const terrain = scene.getObjectByName('terrain')

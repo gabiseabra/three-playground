@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import {Scene} from './Scene'
 
 export class Canvas {
   get element() {
@@ -15,8 +14,6 @@ export class Canvas {
       1,
       config.camera.far
     )
-
-    this.scene = new Scene(this)
 
     this.renderer = new THREE.WebGLRenderer({
       powerPreference: 'high-performance',
