@@ -22,7 +22,7 @@ export default {
     camera: new CameraLight()
   },
   terrain: {
-    color: 0x6c784a,
+    color: 0x895c5c,
     emissive: 0xff2d00
   },
   sun: {
@@ -34,10 +34,14 @@ export default {
     distance: SUN_DISTANCE
   },
   cloud: {
-    scale: 50,
+    power: 1.5,
+    count: 10,
+    scale: 60,
     displacement: 50,
+    detail: 16,
     color: 0xfcfcff,
     shadowColor: 0x606060,
-    transparent: true
+    transparent: true,
+    surfaceOffset: 200
   }
 }

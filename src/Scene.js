@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import {Cloud} from '/objects/Cloud'
+import {Clouds} from '/objects/Cloud'
 import {Sky} from '/objects/Sky'
 import {Sun} from '/objects/Sun'
 import {Terrain} from '/objects/Terrain'
@@ -43,17 +43,19 @@ export class Scene extends THREE.Scene {
     terrain.rotateX(-Math.PI / 2)
     this.add(terrain)
 
-    const cloud = new Cloud(config.cloud)
-    cloud.position.y = 1000
-    cloud.name = 'cloud'
-    this.add(cloud)
+    const clouds = new Clouds({
+      surfaceRadius: config.world.radius,
+      ...config.cloud
+    })
+    clouds.name = 'cloud'
+    this.add(clouds)
 
     this.sky = sky
     this.sunPivot = sunPivot
     this.camera = camera
 
     this.sunDistance = config.sun.distance
-    this.angle = Math.PI / 2
+    this.angle = Math.PI
   }
 
   get angle() {

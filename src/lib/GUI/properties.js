@@ -57,5 +57,6 @@ export function getGUI(obj) {
 
 export function addObject(gui, name, obj) {
   const folder = gui.addFolder(name)
-  getGUI(obj).forEach(addProperty(folder, obj))
+  if (!obj) console.warn(`[GUI] ${name} doesn't exist`)
+  else getGUI(obj).forEach(addProperty(folder, obj))
 }
