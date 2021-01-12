@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as THREE from 'three'
 
 /**
@@ -7,6 +8,7 @@ export class CapsuleBufferGeometry extends THREE.BufferGeometry {
   constructor(
     radiusTop,
     radiusBottom,
+    
     height,
     radialSegments,
     heightSegments,
