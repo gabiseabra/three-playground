@@ -26,6 +26,10 @@ export class Clouds extends THREE.Mesh {
     detail = 16,
     surfaceRadius,
     surfaceOffset = 0,
+    thetaStart = 0,
+    thetaLength = Math.PI / 2.6,
+    phiStart = 0,
+    phiLength = Math.PI * 2,
     count,
     ...opts
   } = {}) {
@@ -47,10 +51,10 @@ export class Clouds extends THREE.Mesh {
       surfaceRadius,
       4,
       4,
-      0,
-      Math.PI * 2,
-      0,
-      Math.PI / 2.6
+      phiStart,
+      phiLength,
+      thetaStart,
+      thetaLength
     )
 
     const sampler = new MeshSurfaceSampler(
