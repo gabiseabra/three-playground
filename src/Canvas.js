@@ -23,6 +23,10 @@ export class Canvas {
     this.setSize(width, height)
   }
 
+  render(scene) {
+    this.renderer.render(scene, this.camera)
+  }
+
   setSize(width, height) {
     if (this.width === width && this.height === height) return
 
