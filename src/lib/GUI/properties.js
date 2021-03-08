@@ -17,7 +17,7 @@ function addValue(gui, obj, prop, opts = {}) {
   if (val instanceof THREE.Color) {
     const hex = '#' + val.getHexString()
     gui.addColor({[name]: hex}, name).onChange((x) => {
-      obj[prop].set(x)
+      val.set(x)
       onChange(x)
     })
   } else if (val instanceof THREE.Uniform) {
