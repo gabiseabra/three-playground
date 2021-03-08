@@ -14,6 +14,7 @@ export class World extends THREE.Object3D {
     super()
 
     const sunPivot = new THREE.Object3D()
+    sunPivot.name = 'sunPivot'
     this.add(sunPivot)
 
     const sun = new Sun(config.sun)
