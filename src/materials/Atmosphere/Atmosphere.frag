@@ -69,9 +69,9 @@ void main() {
 	vec2 uv = vec2( phi, theta ) / vec2( 2.0 * pi, pi ) + vec2( 0.5, 0.0 );
 	vec3 L0 = vec3( 0.1 ) * Fex;
 
-		// composition + solar disc
-	float sundisk = smoothstep( sunAngularDiameterCos, sunAngularDiameterCos + 0.00002, cosTheta );
-	L0 += ( vSunE * 19000.0 * Fex ) * sundisk;
+	// composition + solar disc
+	// float sundisk = smoothstep( sunAngularDiameterCos, sunAngularDiameterCos + 0.00002, cosTheta );
+	// L0 += ( vSunE * 19000.0 * Fex ) * sundisk;
 
 	vec3 texColor = ( Lin + L0 ) * 0.04 + vec3( 0., 0.003, 0.00075 );
 
