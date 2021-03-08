@@ -12,9 +12,14 @@ export class Sun extends THREE.Object3D {
     color = 0xf79b5e,
     emissive,
     emissiveIntensity = 0.5,
-    glowColor = 0xed4577
+    glowColor: $glowColor = 0xed4577
   }) {
     super()
+
+    const glowColor =
+      $glowColor instanceof THREE.Color
+        ? $glowColor
+        : new THREE.Color($glowColor)
 
     const lowPoly = new THREE.SphereGeometry(radius, 15, 15)
     const highPoly = new THREE.SphereGeometry(radius, 25, 25)
@@ -45,7 +50,11 @@ export class Sun extends THREE.Object3D {
     this.sphere = sphere
     this.innerGlow = innerGlow
     this.outerGlow = outerGlow
-    this.glowColor = new THREE.Color(glowColor)
+    this.colors = {
+      glow: glowColor,
+      color: sphere.material.color,
+      emissive: sphere.material.emissive
+    }
   }
 
   onBeforeRender() {
@@ -53,17 +62,6 @@ export class Sun extends THREE.Object3D {
   }
 
   getGUI() {
-    return [
-      [
-        'glowColor',
-        {
-          onChange: () => {
-            this.innerGlow.material.uniforms.color.value.copy(this.glowColor)
-            this.outerGlow.material.uniforms.color.value.copy(this.glowColor)
-          }
-        }
-      ],
-      [null, {target: this.sphere.material}]
-    ]
+    return [['colors.glow'], ['colors.color'], ['colors.emissive']]
   }
 }
