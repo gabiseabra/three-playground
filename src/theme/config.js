@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import {WorldLight, SunLight, CameraLight} from './Lights'
 
 const WORLD_RADIUS = 1500
@@ -26,10 +27,13 @@ export default {
     emissive: 0xff2d00
   },
   sun: {
+    material: new THREE.MeshLambertMaterial({
+      flatShading: true,
+      color: 0xfc8870,
+      emissive: 0xf2063b,
+      emissiveIntensity: 0.5
+    }),
     glowColor: 0xed4577,
-    color: 0xfc8870,
-    emissive: 0xf2063b,
-    emissiveIntensity: 0.5,
     radius: WORLD_RADIUS / 6,
     distance: SUN_DISTANCE
   },

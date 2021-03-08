@@ -7,13 +7,7 @@ export class Sun extends THREE.Object3D {
   name = 'sun'
   speed = 0.005
 
-  constructor({
-    radius,
-    color = 0xf79b5e,
-    emissive,
-    emissiveIntensity = 0.5,
-    glowColor: $glowColor = 0xed4577
-  }) {
+  constructor({radius, material, glowColor: $glowColor = 0xed4577}) {
     super()
 
     const glowColor =
@@ -26,15 +20,7 @@ export class Sun extends THREE.Object3D {
 
     lowPoly.computeFlatVertexNormals()
 
-    const sphere = new THREE.Mesh(
-      lowPoly,
-      new THREE.MeshLambertMaterial({
-        flatShading: true,
-        color,
-        emissive,
-        emissiveIntensity
-      })
-    )
+    const sphere = new THREE.Mesh(lowPoly, material)
     this.add(sphere)
 
     const innerGlow = new InnerGlow(lowPoly, {color: glowColor})
@@ -62,6 +48,6 @@ export class Sun extends THREE.Object3D {
   }
 
   getGUI() {
-    return [['colors.glow'], ['colors.color'], ['colors.emissive']]
+    return [['colors.glow'], [null, {target: this.sphere.material}]]
   }
 }
